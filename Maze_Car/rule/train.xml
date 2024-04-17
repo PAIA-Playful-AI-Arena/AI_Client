@@ -1,0 +1,373 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id=",3Xu6z:@7M:`zRV70HrW">訓練資料_超聲波</variable>
+    <variable id="T;1^F-!/voHIf;c.+T+}">訓練目標_轉速</variable>
+    <variable id="0wfI?^lZzad^xwfm+!C%">i</variable>
+    <variable id="!|Co|Gkp@iDP{udof+{D">j</variable>
+    <variable id="bZF*G~d.@0t%P5b4kn6Y">超音波值</variable>
+    <variable id="$b8oRp[FE})bk+hc2FuA">單一個超音波值</variable>
+    <variable id="*G.u3bGoAmejpXzu1}a*">馬達轉速</variable>
+    <variable id="ke3~%KA+=lNKhxN)^L1n">模型</variable>
+  </variables>
+  <block type="variables_set" id="*Tmg[+JFz*%EDW7]hgxx" x="637" y="-37">
+    <field name="VAR" id=",3Xu6z:@7M:`zRV70HrW">訓練資料_超聲波</field>
+    <value name="VALUE">
+      <block type="lists_create_with" id="aN%8u]8Lb)D?,S`qy%Ft">
+        <mutation items="0"></mutation>
+      </block>
+    </value>
+    <next>
+      <block type="variables_set" id="RT;tGr-1tZltAN$c(rdH">
+        <field name="VAR" id="T;1^F-!/voHIf;c.+T+}">訓練目標_轉速</field>
+        <value name="VALUE">
+          <block type="lists_create_with" id="_/($KtE?1`{ITWC59aEX">
+            <mutation items="0"></mutation>
+          </block>
+        </value>
+        <next>
+          <block type="controls_for" id="ki#1q(-j(*jq1h5UOhBP">
+            <field name="VAR" id="0wfI?^lZzad^xwfm+!C%">i</field>
+            <value name="FROM">
+              <shadow type="math_number" id="?REt|A?y*sOMaf$PH#Y?">
+                <field name="NUM">1</field>
+              </shadow>
+            </value>
+            <value name="TO">
+              <shadow type="math_number" id="$*}hZ-tLzv7[zc#!G4[B">
+                <field name="NUM">3</field>
+              </shadow>
+            </value>
+            <value name="BY">
+              <shadow type="math_number" id="@#5nd`o+Q{0~L.[f(=j#">
+                <field name="NUM">1</field>
+              </shadow>
+            </value>
+            <statement name="DO">
+              <block type="file_load" id="U]n%ou~dt7|LSDvmQQN)">
+                <value name="FILENAME">
+                  <block type="text_join" id="}G5Eu)FEy~Lz?;616FcF">
+                    <mutation items="2"></mutation>
+                    <value name="ADD0">
+                      <block type="text" id="[:.jTA/-hF2/,],0`czF">
+                        <field name="TEXT">feature0</field>
+                      </block>
+                    </value>
+                    <value name="ADD1">
+                      <block type="variables_get" id="I6TrRe*MG{Vm*R?iC+B2">
+                        <field name="VAR" id="0wfI?^lZzad^xwfm+!C%">i</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <value name="OBJECT">
+                  <block type="variables_get" id="VA[b[)Qa-XguxSwmYo!8">
+                    <field name="VAR" id="bZF*G~d.@0t%P5b4kn6Y">超音波值</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="file_load" id="=P.V2jz^{Lm39cfvdEM2">
+                    <value name="FILENAME">
+                      <block type="text_join" id="XH-swOn!Ed:c~e[jx.?j">
+                        <mutation items="2"></mutation>
+                        <value name="ADD0">
+                          <block type="text" id="nxNhT)Qs0KdDeh5=-E|{">
+                            <field name="TEXT">target0</field>
+                          </block>
+                        </value>
+                        <value name="ADD1">
+                          <block type="variables_get" id="/*j^Ig.5#[m8WYRB[4OK">
+                            <field name="VAR" id="0wfI?^lZzad^xwfm+!C%">i</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <value name="OBJECT">
+                      <block type="variables_get" id="i]PaQ{kpB!p^IT`;ekjZ">
+                        <field name="VAR" id="*G.u3bGoAmejpXzu1}a*">馬達轉速</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="lists_extend" id="!y^Sm}7l;py:~~C.$To}">
+                        <field name="VAR" id=",3Xu6z:@7M:`zRV70HrW">訓練資料_超聲波</field>
+                        <value name="LIST">
+                          <block type="variables_get" id="V`c)U0[Ap:2bm7=3Q7bA">
+                            <field name="VAR" id="bZF*G~d.@0t%P5b4kn6Y">超音波值</field>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="lists_extend" id="X/q7JKhDW487aymX;/3C">
+                            <field name="VAR" id="T;1^F-!/voHIf;c.+T+}">訓練目標_轉速</field>
+                            <value name="LIST">
+                              <block type="variables_get" id="c]UmIg%wa5Ab2)iX/bf6">
+                                <field name="VAR" id="*G.u3bGoAmejpXzu1}a*">馬達轉速</field>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="text_print" id="~Ow8t^uscHgX{ZNVDl?:">
+                                <value name="TEXT">
+                                  <shadow type="text" id="~CoGx-ktoaO?r~S.]Icq">
+                                    <field name="TEXT">abc</field>
+                                  </shadow>
+                                  <block type="lists_length" id="-6{5nIywlZ*F-P9_$9]v">
+                                    <value name="VALUE">
+                                      <block type="variables_get" id=":LjAL=0b?R/(bHKED#nI">
+                                        <field name="VAR" id="bZF*G~d.@0t%P5b4kn6Y">超音波值</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="text_print" id="P*WjB]zXQ.dDR,_i347W">
+                                    <value name="TEXT">
+                                      <shadow type="text">
+                                        <field name="TEXT">abc</field>
+                                      </shadow>
+                                      <block type="lists_length" id="Vr^@r_I#M/aYB]0dzL!g">
+                                        <value name="VALUE">
+                                          <block type="variables_get" id="tiPTd@mKk=LXsoKZe6od">
+                                            <field name="VAR" id="*G.u3bGoAmejpXzu1}a*">馬達轉速</field>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </statement>
+            <next>
+              <block type="controls_for" id="OawtyWTa6YrGX}bBB/LN">
+                <field name="VAR" id="!|Co|Gkp@iDP{udof+{D">j</field>
+                <value name="FROM">
+                  <shadow type="math_number" id="Hqm2-B|b4A[ehp=HQ7pJ">
+                    <field name="NUM">1</field>
+                  </shadow>
+                  <block type="lists_length" id=";_4:lj9wdVv^2#GaD)DY">
+                    <value name="VALUE">
+                      <block type="variables_get" id="tJ;)6Xo3m}DUXr3L5.VW">
+                        <field name="VAR" id="bZF*G~d.@0t%P5b4kn6Y">超音波值</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <value name="TO">
+                  <shadow type="math_number" id="bV#~xXkgagWFRlneRtlq">
+                    <field name="NUM">1</field>
+                  </shadow>
+                </value>
+                <value name="BY">
+                  <shadow type="math_number" id="b~~iok{WUXK(;b=sQEyT">
+                    <field name="NUM">-1</field>
+                  </shadow>
+                </value>
+                <statement name="DO">
+                  <block type="variables_set" id="5Hf+dQB/+.=85?#3u8?H">
+                    <field name="VAR" id="$b8oRp[FE})bk+hc2FuA">單一個超音波值</field>
+                    <value name="VALUE">
+                      <block type="lists_getIndex" id="-kiO?do6HX[L:u;xYC(`">
+                        <mutation statement="false" at="true"></mutation>
+                        <field name="MODE">GET</field>
+                        <field name="WHERE">FROM_START</field>
+                        <value name="VALUE">
+                          <block type="variables_get" id="^[_(5cX4-8:Wl*]O9XZ;">
+                            <field name="VAR" id=",3Xu6z:@7M:`zRV70HrW">訓練資料_超聲波</field>
+                          </block>
+                        </value>
+                        <value name="AT">
+                          <block type="variables_get" id="]cpt8!8fm[,Z/FyVge=C">
+                            <field name="VAR" id="!|Co|Gkp@iDP{udof+{D">j</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="controls_if" id="OZV*=+KV+3nF82aU?Su6">
+                        <value name="IF0">
+                          <block type="logic_compare" id="~Kd8SNUTW;1,I@0Q}8/Z">
+                            <field name="OP">EQ</field>
+                            <value name="A">
+                              <block type="lists_getIndex" id="xdnU6Y`(VvXU:W$49=D!">
+                                <mutation statement="false" at="true"></mutation>
+                                <field name="MODE">GET</field>
+                                <field name="WHERE">FROM_START</field>
+                                <value name="VALUE">
+                                  <block type="variables_get" id="zJk@FF]CqEFY]%0.{Pzt">
+                                    <field name="VAR" id="$b8oRp[FE})bk+hc2FuA">單一個超音波值</field>
+                                  </block>
+                                </value>
+                                <value name="AT">
+                                  <block type="math_number" id="+y5aDx?XUh(*nlSEkC|a">
+                                    <field name="NUM">0</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                            <value name="B">
+                              <block type="math_number" id="`usGXN-oj!_Sw]7zd-`J">
+                                <field name="NUM">-1</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <statement name="DO0">
+                          <block type="lists_getIndex" id="):k9$ZiMEJ7$+k-ZUNAy">
+                            <mutation statement="true" at="true"></mutation>
+                            <field name="MODE">REMOVE</field>
+                            <field name="WHERE">FROM_START</field>
+                            <value name="VALUE">
+                              <block type="variables_get" id="8D2!IN1b?E.h:YleN=`e">
+                                <field name="VAR" id=",3Xu6z:@7M:`zRV70HrW">訓練資料_超聲波</field>
+                              </block>
+                            </value>
+                            <value name="AT">
+                              <block type="variables_get" id="`Y|?#$AizQgYmx/h]qGE">
+                                <field name="VAR" id="!|Co|Gkp@iDP{udof+{D">j</field>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="lists_getIndex" id="Vg5Jm8a//@J|E@Dh`6D[">
+                                <mutation statement="true" at="true"></mutation>
+                                <field name="MODE">REMOVE</field>
+                                <field name="WHERE">FROM_START</field>
+                                <value name="VALUE">
+                                  <block type="variables_get" id="g{p+A+SaZx@}=,C#UWMO">
+                                    <field name="VAR" id="T;1^F-!/voHIf;c.+T+}">訓練目標_轉速</field>
+                                  </block>
+                                </value>
+                                <value name="AT">
+                                  <block type="variables_get" id="1Yzp^(C0?|7;}U@{{GH@">
+                                    <field name="VAR" id="!|Co|Gkp@iDP{udof+{D">j</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </next>
+                          </block>
+                        </statement>
+                      </block>
+                    </next>
+                  </block>
+                </statement>
+                <next>
+                  <block type="text_print" id="$EB@zms*I,ink=]FU5bT">
+                    <value name="TEXT">
+                      <shadow type="text" id=",*]8f7h{9b$xQ2OvLFlk">
+                        <field name="TEXT">abc</field>
+                      </shadow>
+                      <block type="lists_length" id="F5P,D(u.DDbdJW5iS;nB">
+                        <value name="VALUE">
+                          <block type="variables_get" id="4.|WLPlo]EYuEdhQi/j)">
+                            <field name="VAR" id="T;1^F-!/voHIf;c.+T+}">訓練目標_轉速</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="text_print" id="VvYk+jKUzWtR+48xs-o%">
+                        <value name="TEXT">
+                          <shadow type="text">
+                            <field name="TEXT">abc</field>
+                          </shadow>
+                          <block type="lists_length" id="-AE=_/2^Bm_)wTg8p+Ix">
+                            <value name="VALUE">
+                              <block type="variables_get" id="/IY3)/?8ARFAWmymq_d|">
+                                <field name="VAR" id=",3Xu6z:@7M:`zRV70HrW">訓練資料_超聲波</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="text_print" id="en6zL=klV1M^UaSZy*5z">
+                            <value name="TEXT">
+                              <shadow type="text" id="9NGq:D|7;VOwLS).:Bsb">
+                                <field name="TEXT">abc</field>
+                              </shadow>
+                              <block type="variables_get" id="wlcP3QgdX6f2X(wE4Q6}">
+                                <field name="VAR" id=",3Xu6z:@7M:`zRV70HrW">訓練資料_超聲波</field>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="variables_set" id="BW]Z+D|5FZyS:Vb]JXj4">
+                                <field name="VAR" id="ke3~%KA+=lNKhxN)^L1n">模型</field>
+                                <value name="VALUE">
+                                  <block type="model_create_regression" id="LmMmYjCd)?Je}R^tAmXu">
+                                    <field name="MODEL">MLPRegressor</field>
+                                    <field name="PARAM_ACTIVATION">tanh</field>
+                                    <field name="PARAM_BATCH_SIZE">15</field>
+                                    <value name="PARAM0">
+                                      <block type="lists_create_with" id="Ci9i4.~7ms[Ez??JESSY">
+                                        <mutation items="3"></mutation>
+                                        <value name="ADD0">
+                                          <block type="math_number" id="UmVgAL/f}yniwuNianHl">
+                                            <field name="NUM">10</field>
+                                          </block>
+                                        </value>
+                                        <value name="ADD1">
+                                          <block type="math_number" id="8rWMzL7Eo.,MB3arXUCy">
+                                            <field name="NUM">20</field>
+                                          </block>
+                                        </value>
+                                        <value name="ADD2">
+                                          <block type="math_number" id="zk{^,PRn?stq=ppO9|^t">
+                                            <field name="NUM">10</field>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="model_train" id="a7,$$,?-y6hL2Ug5$i%W">
+                                    <value name="X">
+                                      <block type="variables_get" id="3*Z4RswB4zD*b;e[L`N[">
+                                        <field name="VAR" id=",3Xu6z:@7M:`zRV70HrW">訓練資料_超聲波</field>
+                                      </block>
+                                    </value>
+                                    <value name="Y">
+                                      <block type="variables_get" id="ySOr;UtpTJLHM5U;qv)S">
+                                        <field name="VAR" id="T;1^F-!/voHIf;c.+T+}">訓練目標_轉速</field>
+                                      </block>
+                                    </value>
+                                    <value name="MODEL">
+                                      <block type="variables_get" id="lwR(q]XjzdO3=yy*R5b{">
+                                        <field name="VAR" id="ke3~%KA+=lNKhxN)^L1n">模型</field>
+                                      </block>
+                                    </value>
+                                    <next>
+                                      <block type="file_save" id="Z[M#NNI@Ew8y^VrB]_Y!">
+                                        <value name="OBJECT">
+                                          <block type="variables_get" id="6F6$~RQ_^npf~;@O_Eo)">
+                                            <field name="VAR" id="ke3~%KA+=lNKhxN)^L1n">模型</field>
+                                          </block>
+                                        </value>
+                                        <value name="FILENAME">
+                                          <block type="text" id="te{Ek^bJgl~glNn80UeN">
+                                            <field name="TEXT">特製模型</field>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>
