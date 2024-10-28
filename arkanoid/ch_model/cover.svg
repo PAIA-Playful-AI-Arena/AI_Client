@@ -1,0 +1,824 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="138 62 960 1177" class="blocklySvg custom_renderer-renderer classic-theme" width="960" height="1177" style="background-color: transparent;"><style xmlns="http://www.w3.org/1999/xhtml">.custom_renderer-renderer.classic-theme .blocklyText,
+.custom_renderer-renderer.classic-theme .blocklyFlyoutLabelText {
+font: bold 12pt "Helvetica Neue", "Segoe UI", Helvetica, sans-serif;
+}
+.custom_renderer-renderer.classic-theme .blocklyText {
+fill: #575E75;
+}
+.custom_renderer-renderer.classic-theme .blocklyNonEditableText&gt;rect:not(.blocklyDropdownRect),
+.custom_renderer-renderer.classic-theme .blocklyEditableText&gt;rect:not(.blocklyDropdownRect) {
+fill: #fff;
+}
+.custom_renderer-renderer.classic-theme .blocklyNonEditableText&gt;text,
+.custom_renderer-renderer.classic-theme .blocklyEditableText&gt;text,
+.custom_renderer-renderer.classic-theme .blocklyNonEditableText&gt;g&gt;text,
+.custom_renderer-renderer.classic-theme .blocklyEditableText&gt;g&gt;text {
+fill: #575E75;
+}
+.custom_renderer-renderer.classic-theme .blocklyFlyoutLabelText {
+fill: #575E75;
+}
+.custom_renderer-renderer.classic-theme .blocklyFlyoutButton {
+fill: #E4F5FF;
+cursor: pointer;
+}
+.custom_renderer-renderer.classic-theme .blocklyText.blocklyBubbleText {
+fill: #575E75;
+}
+.custom_renderer-renderer.classic-theme .blocklyDraggable:not(.blocklyDisabled)
+ .blocklyEditableText:not(.editing):hover&gt;rect,
+.custom_renderer-renderer.classic-theme .blocklyDraggable:not(.blocklyDisabled)
+ .blocklyEditableText:not(.editing):hover&gt;.blocklyPath {
+stroke: #fff;
+stroke-width: 2;
+}
+.custom_renderer-renderer.classic-theme .blocklyHtmlInput {
+font-family: "Helvetica Neue", "Segoe UI", Helvetica, sans-serif;
+font-weight: bold;
+color: #575E75;
+}
+.custom_renderer-renderer.classic-theme .blocklyDropdownText {
+fill: #575E75 !important;
+}
+.custom_renderer-renderer.classic-theme.blocklyWidgetDiv .goog-menuitem,
+.custom_renderer-renderer.classic-theme.blocklyDropDownDiv .goog-menuitem {
+font-family: "Helvetica Neue", "Segoe UI", Helvetica, sans-serif;
+}
+.custom_renderer-renderer.classic-theme.blocklyDropDownDiv .goog-menuitem-content {
+color: #575E75;
+}
+.custom_renderer-renderer.classic-theme .blocklyHighlightedConnectionPath {
+stroke: #fff200;
+}
+.custom_renderer-renderer.classic-theme .blocklyDisabled &gt; .blocklyOutlinePath {
+fill: url(#blocklyDisabledPattern0723871552518287)
+}
+.custom_renderer-renderer.classic-theme .blocklyInsertionMarker&gt;.blocklyPath {
+fill-opacity: 0.2;
+stroke: none;
+}
+
+.blocklySvg {
+  background-color: #fff;
+  outline: none;
+  overflow: hidden;  /* IE overflows by default. */
+  position: absolute;
+  display: block;
+}
+
+.blocklyWidgetDiv {
+  display: none;
+  position: absolute;
+  z-index: 99999;  /* big value for bootstrap3 compatibility */
+}
+
+.injectionDiv {
+  height: 100%;
+  position: relative;
+  overflow: hidden;  /* So blocks in drag surface disappear at edges */
+  touch-action: none;
+}
+
+.blocklyNonSelectable {
+  user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+}
+
+.blocklyBlockCanvas.blocklyCanvasTransitioning,
+.blocklyBubbleCanvas.blocklyCanvasTransitioning {
+  transition: transform .5s;
+}
+
+.blocklyTooltipDiv {
+  background-color: #ffffc7;
+  border: 1px solid #ddc;
+  box-shadow: 4px 4px 20px 1px rgba(0,0,0,.15);
+  color: #000;
+  display: none;
+  font: 9pt sans-serif;
+  opacity: .9;
+  padding: 2px;
+  position: absolute;
+  z-index: 100000;  /* big value for bootstrap3 compatibility */
+}
+
+.blocklyDropDownDiv {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+  display: none;
+  border: 1px solid;
+  border-color: #dadce0;
+  background-color: #fff;
+  border-radius: 2px;
+  padding: 4px;
+  box-shadow: 0 0 3px 1px rgba(0,0,0,.3);
+}
+
+.blocklyDropDownDiv.blocklyFocused {
+  box-shadow: 0 0 6px 1px rgba(0,0,0,.3);
+}
+
+.blocklyDropDownContent {
+  max-height: 300px;  /* @todo: spec for maximum height. */
+  overflow: auto;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.blocklyDropDownArrow {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 16px;
+  height: 16px;
+  z-index: -1;
+  background-color: inherit;
+  border-color: inherit;
+}
+
+.blocklyDropDownButton {
+  display: inline-block;
+  float: left;
+  padding: 0;
+  margin: 4px;
+  border-radius: 4px;
+  outline: none;
+  border: 1px solid;
+  transition: box-shadow .1s;
+  cursor: pointer;
+}
+
+.blocklyArrowTop {
+  border-top: 1px solid;
+  border-left: 1px solid;
+  border-top-left-radius: 4px;
+  border-color: inherit;
+}
+
+.blocklyArrowBottom {
+  border-bottom: 1px solid;
+  border-right: 1px solid;
+  border-bottom-right-radius: 4px;
+  border-color: inherit;
+}
+
+.blocklyResizeSE {
+  cursor: se-resize;
+  fill: #aaa;
+}
+
+.blocklyResizeSW {
+  cursor: sw-resize;
+  fill: #aaa;
+}
+
+.blocklyResizeLine {
+  stroke: #515A5A;
+  stroke-width: 1;
+}
+
+.blocklyHighlightedConnectionPath {
+  fill: none;
+  stroke: #fc3;
+  stroke-width: 4px;
+}
+
+.blocklyPathLight {
+  fill: none;
+  stroke-linecap: round;
+  stroke-width: 1;
+}
+
+.blocklySelected&gt;.blocklyPathLight {
+  display: none;
+}
+
+.blocklyDraggable {
+  cursor: grab;
+  cursor: -webkit-grab;
+}
+
+.blocklyDragging {
+  cursor: grabbing;
+  cursor: -webkit-grabbing;
+}
+
+  /* Changes cursor on mouse down. Not effective in Firefox because of
+     https://bugzilla.mozilla.org/show_bug.cgi?id=771241 */
+.blocklyDraggable:active {
+  cursor: grabbing;
+  cursor: -webkit-grabbing;
+}
+
+.blocklyDragging.blocklyDraggingDelete {
+  cursor: url("media/handdelete.cur"), auto;
+}
+
+.blocklyDragging&gt;.blocklyPath,
+.blocklyDragging&gt;.blocklyPathLight {
+  fill-opacity: .8;
+  stroke-opacity: .8;
+}
+
+.blocklyDragging&gt;.blocklyPathDark {
+  display: none;
+}
+
+.blocklyDisabled&gt;.blocklyPath {
+  fill-opacity: .5;
+  stroke-opacity: .5;
+}
+
+.blocklyDisabled&gt;.blocklyPathLight,
+.blocklyDisabled&gt;.blocklyPathDark {
+  display: none;
+}
+
+.blocklyInsertionMarker&gt;.blocklyPath,
+.blocklyInsertionMarker&gt;.blocklyPathLight,
+.blocklyInsertionMarker&gt;.blocklyPathDark {
+  fill-opacity: .2;
+  stroke: none;
+}
+
+.blocklyMultilineText {
+  font-family: monospace;
+}
+
+.blocklyNonEditableText&gt;text {
+  pointer-events: none;
+}
+
+.blocklyFlyout {
+  position: absolute;
+  z-index: 20;
+}
+
+.blocklyText text {
+  cursor: default;
+}
+
+/*
+  Don't allow users to select text.  It gets annoying when trying to
+  drag a block and selected text moves instead.
+*/
+.blocklySvg text {
+  user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  cursor: inherit;
+}
+
+.blocklyHidden {
+  display: none;
+}
+
+.blocklyFieldDropdown:not(.blocklyHidden) {
+  display: block;
+}
+
+.blocklyIconGroup {
+  cursor: default;
+}
+
+.blocklyIconGroup:not(:hover),
+.blocklyIconGroupReadonly {
+  opacity: .6;
+}
+
+.blocklyIconShape {
+  fill: #00f;
+  stroke: #fff;
+  stroke-width: 1px;
+}
+
+.blocklyIconSymbol {
+  fill: #fff;
+}
+
+.blocklyMinimalBody {
+  margin: 0;
+  padding: 0;
+}
+
+.blocklyHtmlInput {
+  border: none;
+  border-radius: 4px;
+  height: 100%;
+  margin: 0;
+  outline: none;
+  padding: 0;
+  width: 100%;
+  text-align: center;
+  display: block;
+  box-sizing: border-box;
+}
+
+/* Remove the increase and decrease arrows on the field number editor */
+input.blocklyHtmlInput[type=number]::-webkit-inner-spin-button,
+input.blocklyHtmlInput[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.blocklyMainBackground {
+  stroke-width: 1;
+  stroke: #c6c6c6;  /* Equates to #ddd due to border being off-pixel. */
+}
+
+.blocklyMutatorBackground {
+  fill: #fff;
+  stroke: #ddd;
+  stroke-width: 1;
+}
+
+.blocklyFlyoutBackground {
+  fill: #ddd;
+  fill-opacity: .8;
+}
+
+.blocklyMainWorkspaceScrollbar {
+  z-index: 20;
+}
+
+.blocklyFlyoutScrollbar {
+  z-index: 30;
+}
+
+.blocklyScrollbarHorizontal,
+.blocklyScrollbarVertical {
+  position: absolute;
+  outline: none;
+}
+
+.blocklyScrollbarBackground {
+  opacity: 0;
+}
+
+.blocklyScrollbarHandle {
+  fill: #ccc;
+}
+
+.blocklyScrollbarBackground:hover+.blocklyScrollbarHandle,
+.blocklyScrollbarHandle:hover {
+  fill: #bbb;
+}
+
+/* Darken flyout scrollbars due to being on a grey background. */
+/* By contrast, workspace scrollbars are on a white background. */
+.blocklyFlyout .blocklyScrollbarHandle {
+  fill: #bbb;
+}
+
+.blocklyFlyout .blocklyScrollbarBackground:hover+.blocklyScrollbarHandle,
+.blocklyFlyout .blocklyScrollbarHandle:hover {
+  fill: #aaa;
+}
+
+.blocklyInvalidInput {
+  background: #faa;
+}
+
+.blocklyVerticalMarker {
+  stroke-width: 3px;
+  fill: rgba(255,255,255,.5);
+  pointer-events: none;
+}
+
+.blocklyComputeCanvas {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+.blocklyNoPointerEvents {
+  pointer-events: none;
+}
+
+.blocklyContextMenu {
+  border-radius: 4px;
+  max-height: 100%;
+}
+
+.blocklyDropdownMenu {
+  border-radius: 2px;
+  padding: 0 !important;
+}
+
+.blocklyDropdownMenu .blocklyMenuItem {
+  /* 28px on the left for icon or checkbox. */
+  padding-left: 28px;
+}
+
+/* BiDi override for the resting state. */
+.blocklyDropdownMenu .blocklyMenuItemRtl {
+  /* Flip left/right padding for BiDi. */
+  padding-left: 5px;
+  padding-right: 28px;
+}
+
+.blocklyWidgetDiv .blocklyMenu {
+  background: #fff;
+  border: 1px solid transparent;
+  box-shadow: 0 0 3px 1px rgba(0,0,0,.3);
+  font: normal 13px Arial, sans-serif;
+  margin: 0;
+  outline: none;
+  padding: 4px 0;
+  position: absolute;
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 100%;
+  z-index: 20000;  /* Arbitrary, but some apps depend on it... */
+}
+
+.blocklyWidgetDiv .blocklyMenu.blocklyFocused {
+  box-shadow: 0 0 6px 1px rgba(0,0,0,.3);
+}
+
+.blocklyDropDownDiv .blocklyMenu {
+  background: inherit;  /* Compatibility with gapi, reset from goog-menu */
+  border: inherit;  /* Compatibility with gapi, reset from goog-menu */
+  font: normal 13px "Helvetica Neue", Helvetica, sans-serif;
+  outline: none;
+  position: relative;  /* Compatibility with gapi, reset from goog-menu */
+  z-index: 20000;  /* Arbitrary, but some apps depend on it... */
+}
+
+/* State: resting. */
+.blocklyMenuItem {
+  border: none;
+  color: #000;
+  cursor: pointer;
+  list-style: none;
+  margin: 0;
+  /* 7em on the right for shortcut. */
+  min-width: 7em;
+  padding: 6px 15px;
+  white-space: nowrap;
+}
+
+/* State: disabled. */
+.blocklyMenuItemDisabled {
+  color: #ccc;
+  cursor: inherit;
+}
+
+/* State: hover. */
+.blocklyMenuItemHighlight {
+  background-color: rgba(0,0,0,.1);
+}
+
+/* State: selected/checked. */
+.blocklyMenuItemCheckbox {
+  height: 16px;
+  position: absolute;
+  width: 16px;
+}
+
+.blocklyMenuItemSelected .blocklyMenuItemCheckbox {
+  background: url(media/sprites.png) no-repeat -48px -16px;
+  float: left;
+  margin-left: -24px;
+  position: static;  /* Scroll with the menu. */
+}
+
+.blocklyMenuItemRtl .blocklyMenuItemCheckbox {
+  float: right;
+  margin-right: -24px;
+}
+
+.blocklyBlockDragSurface {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: visible !important;
+  z-index: 80;
+  pointer-events: none;
+}
+
+
+.blocklyZoom&gt;image, .blocklyZoom&gt;svg&gt;image {
+  opacity: .4;
+}
+
+.blocklyZoom&gt;image:hover, .blocklyZoom&gt;svg&gt;image:hover {
+  opacity: .6;
+}
+
+.blocklyZoom&gt;image:active, .blocklyZoom&gt;svg&gt;image:active {
+  opacity: .8;
+}
+
+
+.blocklyCommentForeignObject {
+  position: relative;
+  z-index: 0;
+}
+
+.blocklyCommentRect {
+  fill: #E7DE8E;
+  stroke: #bcA903;
+  stroke-width: 1px;
+}
+
+.blocklyCommentTarget {
+  fill: transparent;
+  stroke: #bcA903;
+}
+
+.blocklyCommentTargetFocused {
+  fill: none;
+}
+
+.blocklyCommentHandleTarget {
+  fill: none;
+}
+
+.blocklyCommentHandleTargetFocused {
+  fill: transparent;
+}
+
+.blocklyFocused&gt;.blocklyCommentRect {
+  fill: #B9B272;
+  stroke: #B9B272;
+}
+
+.blocklySelected&gt;.blocklyCommentTarget {
+  stroke: #fc3;
+  stroke-width: 3px;
+}
+
+.blocklyCommentDeleteIcon {
+  cursor: pointer;
+  fill: #000;
+  display: none;
+}
+
+.blocklySelected &gt; .blocklyCommentDeleteIcon {
+  display: block;
+}
+
+.blocklyDeleteIconShape {
+  fill: #000;
+  stroke: #000;
+  stroke-width: 1px;
+}
+
+.blocklyDeleteIconShape.blocklyDeleteIconHighlighted {
+  stroke: #fc3;
+}
+
+
+.blocklyCommentTextarea {
+  background-color: #fef49c;
+  border: 0;
+  display: block;
+  margin: 0;
+  outline: 0;
+  padding: 3px;
+  resize: none;
+  text-overflow: hidden;
+}
+
+
+.blocklyAngleCircle {
+  stroke: #444;
+  stroke-width: 1;
+  fill: #ddd;
+  fill-opacity: 0.8;
+}
+
+.blocklyAngleMarks {
+  stroke: #444;
+  stroke-width: 1;
+}
+
+.blocklyAngleGauge {
+  fill: #f88;
+  fill-opacity: 0.8;
+  pointer-events: none;
+}
+
+.blocklyAngleLine {
+  stroke: #f00;
+  stroke-width: 2;
+  stroke-linecap: round;
+  pointer-events: none;
+}
+
+
+.blocklyColourTable {
+  border-collapse: collapse;
+  display: block;
+  outline: none;
+  padding: 1px;
+}
+
+.blocklyColourTable&gt;tr&gt;td {
+  border: 0.5px solid #888;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-block;
+  height: 20px;
+  padding: 0;
+  width: 20px;
+}
+
+.blocklyColourTable&gt;tr&gt;td.blocklyColourHighlighted {
+  border-color: #eee;
+  box-shadow: 2px 2px 7px 2px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.blocklyColourSelected, .blocklyColourSelected:hover {
+  border-color: #eee !important;
+  outline: 1px solid #333;
+  position: relative;
+}
+
+
+.blocklyHtmlTextAreaInput {
+  font-family: monospace;
+  resize: none;
+  overflow: hidden;
+  height: 100%;
+  text-align: left;
+}
+
+.blocklyHtmlTextAreaInputOverflowedY {
+  overflow-y: scroll;
+}
+
+
+.blocklyFlyoutButton {
+  fill: #888;
+  cursor: default;
+}
+
+.blocklyFlyoutButtonShadow {
+  fill: #666;
+}
+
+.blocklyFlyoutButton:hover {
+  fill: #aaa;
+}
+
+.blocklyFlyoutLabel {
+  cursor: default;
+}
+
+.blocklyFlyoutLabelBackground {
+  opacity: 0;
+}
+
+
+.blocklyTreeRow:not(.blocklyTreeSelected):hover {
+  background-color: rgba(255, 255, 255, .2);
+}
+
+.blocklyToolboxDiv[layout="h"] .blocklyToolboxCategory {
+  margin: 1px 5px 1px 0;
+}
+
+.blocklyToolboxDiv[dir="RTL"][layout="h"] .blocklyToolboxCategory {
+  margin: 1px 0 1px 5px;
+}
+
+.blocklyTreeRow {
+  height: 22px;
+  line-height: 22px;
+  margin-bottom: 3px;
+  padding-right: 8px;
+  white-space: nowrap;
+}
+
+.blocklyToolboxDiv[dir="RTL"] .blocklyTreeRow {
+  margin-left: 8px;
+  padding-right: 0;
+}
+
+.blocklyTreeIcon {
+  background-image: url(media/sprites.png);
+  height: 16px;
+  vertical-align: middle;
+  visibility: hidden;
+  width: 16px;
+}
+
+.blocklyTreeIconClosed {
+  background-position: -32px -1px;
+}
+
+.blocklyToolboxDiv[dir="RTL"] .blocklyTreeIconClosed {
+  background-position: 0 -1px;
+}
+
+.blocklyTreeSelected&gt;.blocklyTreeIconClosed {
+  background-position: -32px -17px;
+}
+
+.blocklyToolboxDiv[dir="RTL"] .blocklyTreeSelected&gt;.blocklyTreeIconClosed {
+  background-position: 0 -17px;
+}
+
+.blocklyTreeIconOpen {
+  background-position: -16px -1px;
+}
+
+.blocklyTreeSelected&gt;.blocklyTreeIconOpen {
+  background-position: -16px -17px;
+}
+
+.blocklyTreeLabel {
+  cursor: default;
+  font: 16px sans-serif;
+  padding: 0 3px;
+  vertical-align: middle;
+}
+
+.blocklyToolboxDelete .blocklyTreeLabel {
+  cursor: url("media/handdelete.cur"), auto;
+}
+
+.blocklyTreeSelected .blocklyTreeLabel {
+  color: #fff;
+}
+
+
+.blocklyTreeSeparator {
+  border-bottom: solid #e5e5e5 1px;
+  height: 0;
+  margin: 5px 0;
+}
+
+.blocklyToolboxDiv[layout="h"] .blocklyTreeSeparator {
+  border-right: solid #e5e5e5 1px;
+  border-bottom: none;
+  height: auto;
+  margin: 0 5px 0 5px;
+  padding: 5px 0;
+  width: 0;
+}
+
+
+.blocklyToolboxDelete {
+  cursor: url("media/handdelete.cur"), auto;
+}
+
+.blocklyToolboxGrab {
+  cursor: url("media/handclosed.cur"), auto;
+  cursor: grabbing;
+  cursor: -webkit-grabbing;
+}
+
+/* Category tree in Toolbox. */
+.blocklyToolboxDiv {
+  background-color: #ddd;
+  overflow-x: visible;
+  overflow-y: auto;
+  padding: 4px 0 4px 0;
+  position: absolute;
+  z-index: 70;  /* so blocks go under toolbox when dragging */
+  -webkit-tap-highlight-color: transparent;  /* issue #1345 */
+}
+
+.blocklyToolboxContents {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.blocklyToolboxContents:focus {
+  outline: none;
+}
+
+
+.categoryBubble {
+  margin: 0 auto 0.125rem;
+  border-radius: 100%;
+  border: 1px solid;
+  width: 1.25rem;
+  height: 1.25rem;
+}
+.blocklyTreeRow {
+  height: initial;
+  padding: 3px 0;
+}
+.blocklyTreeRowContentContainer {
+  display: flex;
+  flex-direction: column;
+}
+.blocklyTreeLabel {
+  margin: auto;
+}
+</style><g class="blocklyBlockCanvas"><g class="blocklyCursor"><g width="80" height="5"><rect width="80" height="5" style="display: none;"><animate attributeType="XML" attributeName="fill" dur="1s" values="#ffa200;transparent;transparent;" repeatCount="indefinite"/></rect><rect class="blocklyVerticalMarker" rx="10" ry="10" style="display: none;"/><path transform="" style="display: none;"><animate attributeType="XML" attributeName="fill" dur="1s" values="#ffa200;transparent;transparent;" repeatCount="indefinite"/></path><path transform="" fill="none" stroke-width="4" style="display: none;"><animate attributeType="XML" attributeName="stroke" dur="1s" values="#ffa200;transparent;transparent;" repeatCount="indefinite"/></path><circle r="5" stroke-width="4" style="display: none;"><animate attributeType="XML" attributeName="fill" dur="1s" values="#ffa200;transparent;transparent;" repeatCount="indefinite"/></circle></g></g><g data-id="E2QBU7Py65c+UF)Im_UX" class="blocklyDraggable" transform="translate(838, 538)"><path class="blocklyPath" stroke="#7997bf" fill="#fff" d=" m 20,0  h 8 a 20 20 0 0,1 20,20  v 0 a 20 20 0 0,1 -20,20  V 40  h -8 a 20 20 0 0,1 -20,-20  v 0 a 20 20 0 0,1 20,-20 z&#10;"/><g class="blocklyEditableText" transform="translate(19.552001953125,10)" style="cursor: text;"><rect rx="4" ry="4" x="0" y="0" height="20" width="8.89599609375" class="blocklyFieldRect" style="display: none;"/><text class="blocklyText" dominant-baseline="central" x="0" y="10">3</text></g></g><g data-id="W)mo|oY|FdT!+$qINp6u" class="blocklyDraggable" transform="translate(138, 62)"><path class="blocklyPath" stroke="#bf9197" fill="#ffc1c9" d=" m 0,0  m 0,4 a 4 4 0 0,1 4,-4  h 8  c 2,0  3,1  4,2  l 4,4  c 1,1  2,2  4,2  h 12  c 2,0  3,-1  4,-2  l 4,-4  c 1,-1  2,-2  4,-2  h 305 a 4 4 0 0,1 4,4  v 8  V 44  V 44 a 4 4 0 0,1 -4,4  h -305  c -2,0  -3,1  -4,2  l -4,4  c -1,1  -2,2  -4,2  h -12  c -2,0  -3,-1  -4,-2  l -4,-4  c -1,-1  -2,-2  -4,-2  h -8 a 4 4 0 0,1 -4,-4 z&#10;"/><g data-id="]i!h!Ni@]UEP5yY]Oc`~" class="blocklyDraggable" style="display: block;" transform="translate(196, 4)"><path class="blocklyPath" stroke="#bdae7a" fill="#fce8a2" d=" m 20,0  h 113  h 20  l -20,40  V 40  h -113  l -20,-40  h 20 z&#10;"/><g transform="translate(49,10)"><text class="blocklyText" dominant-baseline="central" x="0" y="10">空的清單</text></g><g class="blocklyIconGroup blockly-icon-mutator" transform="translate(24, 11.5)"><rect class="blocklyIconShape" rx="4" ry="4" height="16" width="16"/><path class="blocklyIconSymbol" d="m4.203,7.296 0,1.368 -0.92,0.677 -0.11,0.41 0.9,1.559 0.41,0.11 1.043,-0.457 1.187,0.683 0.127,1.134 0.3,0.3 1.8,0 0.3,-0.299 0.127,-1.138 1.185,-0.682 1.046,0.458 0.409,-0.11 0.9,-1.559 -0.11,-0.41 -0.92,-0.677 0,-1.366 0.92,-0.677 0.11,-0.41 -0.9,-1.559 -0.409,-0.109 -1.046,0.458 -1.185,-0.682 -0.127,-1.138 -0.3,-0.299 -1.8,0 -0.3,0.3 -0.126,1.135 -1.187,0.682 -1.043,-0.457 -0.41,0.11 -0.899,1.559 0.108,0.409z"/><circle class="blocklyIconShape" r="2.7" cx="8" cy="8"/></g></g><g transform="translate(8,14)"><text class="blocklyText" dominant-baseline="central" x="0" y="10">變數</text></g><g class="blocklyEditableText" transform="translate(48,7.5)" style="cursor: default;"><rect rx="4" ry="4" x="0" y="0" height="33" width="100" class="blocklyFieldRect blocklyDropdownRect" stroke="#bf9197" fill="transparent"/><text class="blocklyText blocklyDropdownText" dominant-baseline="central" text-anchor="start" x="8" y="16.5">模型輸入</text><image style="display: none;"/><image height="12px" width="12px" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMi43MSIgaGVpZ2h0PSI4Ljc5IiB2aWV3Qm94PSIwIDAgMTIuNzEgOC43OSI+PHRpdGxlPmRyb3Bkb3duLWFycm93PC90aXRsZT48ZyBvcGFjaXR5PSIwLjEiPjxwYXRoIGQ9Ik0xMi43MSwyLjQ0QTIuNDEsMi40MSwwLDAsMSwxMiw0LjE2TDguMDgsOC4wOGEyLjQ1LDIuNDUsMCwwLDEtMy40NSwwTDAuNzIsNC4xNkEyLjQyLDIuNDIsMCwwLDEsMCwyLjQ0LDIuNDgsMi40OCwwLDAsMSwuNzEuNzFDMSwwLjQ3LDEuNDMsMCw2LjM2LDBTMTEuNzUsMC40NiwxMiwuNzFBMi40NCwyLjQ0LDAsMCwxLDEyLjcxLDIuNDRaIiBmaWxsPSIjMjMxZjIwIi8+PC9nPjxwYXRoIGQ9Ik02LjM2LDcuNzlhMS40MywxLjQzLDAsMCwxLTEtLjQyTDEuNDIsMy40NWExLjQ0LDEuNDQsMCwwLDEsMC0yYzAuNTYtLjU2LDkuMzEtMC41Niw5Ljg3LDBhMS40NCwxLjQ0LDAsMCwxLDAsMkw3LjM3LDcuMzdBMS40MywxLjQzLDAsMCwxLDYuMzYsNy43OVoiIGZpbGw9IiNmZmYiLz48L3N2Zz4=" transform="translate(80,10.5)"/></g><g transform="translate(156,14)"><text class="blocklyText" dominant-baseline="central" x="0" y="10">設為</text></g><g data-id="$VnFN+#=9VaQUvaIP!p2" class="blocklyDraggable" transform="translate(0, 48)"><path class="blocklyPath" stroke="#bf9197" fill="#ffc1c9" d=" m 0,0  m 0,4 a 4 4 0 0,1 4,-4  h 8  c 2,0  3,1  4,2  l 4,4  c 1,1  2,2  4,2  h 12  c 2,0  3,-1  4,-2  l 4,-4  c 1,-1  2,-2  4,-2  h 305 a 4 4 0 0,1 4,4  v 8  V 44  V 44 a 4 4 0 0,1 -4,4  h -305  c -2,0  -3,1  -4,2  l -4,4  c -1,1  -2,2  -4,2  h -12  c -2,0  -3,-1  -4,-2  l -4,-4  c -1,-1  -2,-2  -4,-2  h -8 a 4 4 0 0,1 -4,-4 z&#10;"/><g data-id="Vn9!NAz=lV45a5G_`E5y" class="blocklyDraggable" style="display: block;" transform="translate(196, 4)"><path class="blocklyPath" stroke="#bdae7a" fill="#fce8a2" d=" m 20,0  h 113  h 20  l -20,40  V 40  h -113  l -20,-40  h 20 z&#10;"/><g transform="translate(49,10)"><text class="blocklyText" dominant-baseline="central" x="0" y="10">空的清單</text></g><g class="blocklyIconGroup blockly-icon-mutator" transform="translate(24, 11.5)"><rect class="blocklyIconShape" rx="4" ry="4" height="16" width="16"/><path class="blocklyIconSymbol" d="m4.203,7.296 0,1.368 -0.92,0.677 -0.11,0.41 0.9,1.559 0.41,0.11 1.043,-0.457 1.187,0.683 0.127,1.134 0.3,0.3 1.8,0 0.3,-0.299 0.127,-1.138 1.185,-0.682 1.046,0.458 0.409,-0.11 0.9,-1.559 -0.11,-0.41 -0.92,-0.677 0,-1.366 0.92,-0.677 0.11,-0.41 -0.9,-1.559 -0.409,-0.109 -1.046,0.458 -1.185,-0.682 -0.127,-1.138 -0.3,-0.299 -1.8,0 -0.3,0.3 -0.126,1.135 -1.187,0.682 -1.043,-0.457 -0.41,0.11 -0.899,1.559 0.108,0.409z"/><circle class="blocklyIconShape" r="2.7" cx="8" cy="8"/></g></g><g transform="translate(8,14)"><text class="blocklyText" dominant-baseline="central" x="0" y="10">變數</text></g><g class="blocklyEditableText" transform="translate(48,7.5)" style="cursor: default;"><rect rx="4" ry="4" x="0" y="0" height="33" width="100" class="blocklyFieldRect blocklyDropdownRect" stroke="#bf9197" fill="transparent"/><text class="blocklyText blocklyDropdownText" dominant-baseline="central" text-anchor="start" x="8" y="16.5">模型輸出</text><image style="display: none;"/><image height="12px" width="12px" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMi43MSIgaGVpZ2h0PSI4Ljc5IiB2aWV3Qm94PSIwIDAgMTIuNzEgOC43OSI+PHRpdGxlPmRyb3Bkb3duLWFycm93PC90aXRsZT48ZyBvcGFjaXR5PSIwLjEiPjxwYXRoIGQ9Ik0xMi43MSwyLjQ0QTIuNDEsMi40MSwwLDAsMSwxMiw0LjE2TDguMDgsOC4wOGEyLjQ1LDIuNDUsMCwwLDEtMy40NSwwTDAuNzIsNC4xNkEyLjQyLDIuNDIsMCwwLDEsMCwyLjQ0LDIuNDgsMi40OCwwLDAsMSwuNzEuNzFDMSwwLjQ3LDEuNDMsMCw2LjM2LDBTMTEuNzUsMC40NiwxMiwuNzFBMi40NCwyLjQ0LDAsMCwxLDEyLjcxLDIuNDRaIiBmaWxsPSIjMjMxZjIwIi8+PC9nPjxwYXRoIGQ9Ik02LjM2LDcuNzlhMS40MywxLjQzLDAsMCwxLTEtLjQyTDEuNDIsMy40NWExLjQ0LDEuNDQsMCwwLDEsMC0yYzAuNTYtLjU2LDkuMzEtMC41Niw5Ljg3LDBhMS40NCwxLjQ0LDAsMCwxLDAsMkw3LjM3LDcuMzdBMS40MywxLjQzLDAsMCwxLDYuMzYsNy43OVoiIGZpbGw9IiNmZmYiLz48L3N2Zz4=" transform="translate(80,10.5)"/></g><g transform="translate(156,14)"><text class="blocklyText" dominant-baseline="central" x="0" y="10">設為</text></g><g data-id="5%fnyv!INWj@lW]YPszg" class="blocklyDraggable" transform="translate(0, 48)"><path class="blocklyPath" stroke="#a3bca1" fill="#d9fad6" d=" m 0,0  m 0,4 a 4 4 0 0,1 4,-4  h 8  c 2,0  3,1  4,2  l 4,4  c 1,1  2,2  4,2  h 12  c 2,0  3,-1  4,-2  l 4,-4  c 1,-1  2,-2  4,-2  h 368 a 4 4 0 0,1 4,4  v 8  V 41  V 45 a 4 4 0 0,1 -4,4  H 96  c -2,0  -3,1  -4,2  l -4,4  c -1,1  -2,2  -4,2  h -12  c -2,0  -3,-1  -4,-2  l -4,-4  c -1,-1  -2,-2  -4,-2  h -8 a 4 4 0 0,0 -4,4  v 396 a 4 4 0 0,0 4,4  h 8  c 2,0  3,1  4,2  l 4,4  c 1,1  2,2  4,2  h 12  c 2,0  3,-1  4,-2  l 4,-4  c 1,-1  2,-2  4,-2  H 416 a 4 4 0 0,1 4,4  V 461  V 481 a 4 4 0 0,1 -4,4  h -368  c -2,0  -3,1  -4,2  l -4,4  c -1,1  -2,2  -4,2  h -12  c -2,0  -3,-1  -4,-2  l -4,-4  c -1,-1  -2,-2  -4,-2  h -8 a 4 4 0 0,1 -4,-4 z&#10;"/><g data-id=";;hj!muF487so``r;,vG" style="display: block;" transform="translate(180, 8.5)"><path class="blocklyPath" stroke="#a3bca1" fill="#fff" d=" m 16,0  h 8 a 16 16 0 0,1 16,16  v 0 a 16 16 0 0,1 -16,16  V 32  h -8 a 16 16 0 0,1 -16,-16  v 0 a 16 16 0 0,1 16,-16 z&#10;"/><g class="blocklyEditableText" transform="translate(15.552001953125,6)" style="cursor: text;"><rect rx="4" ry="4" x="0" y="0" height="20" width="8.89599609375" class="blocklyFieldRect" style="display: none;"/><text class="blocklyText" dominant-baseline="central" x="0" y="10">1</text></g></g><g data-id="ok.w}SrVN-B,OiAD*B.3" style="display: block;" transform="translate(252, 8.5)" class=""><path class="blocklyPath" stroke="#a3bca1" fill="#fff" d=" m 16,0  h 8 a 16 16 0 0,1 16,16  v 0 a 16 16 0 0,1 -16,16  V 32  h -8 a 16 16 0 0,1 -16,-16  v 0 a 16 16 0 0,1 16,-16 z&#10;"/><g class="blocklyEditableText" transform="translate(15.552001953125,6)" style="cursor: text;"><rect rx="4" ry="4" x="0" y="0" height="20" width="8.89599609375" class="blocklyFieldRect" style="display: none;"/><text class="blocklyText" dominant-baseline="central" x="0" y="10">1</text></g></g><g data-id="YxzYwl_6az)yet=Tzcdk" style="display: block;" transform="translate(372, 8.5)"><path class="blocklyPath" stroke="#a3bca1" fill="#fff" d=" m 16,0  h 8 a 16 16 0 0,1 16,16  v 0 a 16 16 0 0,1 -16,16  V 32  h -8 a 16 16 0 0,1 -16,-16  v 0 a 16 16 0 0,1 16,-16 z&#10;"/><g class="blocklyEditableText" transform="translate(15.552001953125,6)" style="cursor: text;"><rect rx="4" ry="4" x="0" y="0" height="20" width="8.89599609375" class="blocklyFieldRect" style="display: none;"/><text class="blocklyText" dominant-baseline="central" x="0" y="10">1</text></g></g><g data-id="}oR_ADe!yK=3+Bq8rD=$" class="blocklyDraggable" style="display: block;" transform="translate(48, 49)"><path class="blocklyPath" stroke="#b09d9d" fill="#ebd1d1" d=" m 0,0  m 0,4 a 4 4 0 0,1 4,-4  h 8  c 2,0  3,1  4,2  l 4,4  c 1,1  2,2  4,2  h 12  c 2,0  3,-1  4,-2  l 4,-4  c 1,-1  2,-2  4,-2  h 557.9919281005859 a 4 4 0 0,1 4,4  v 8  V 150  V 150 a 4 4 0 0,1 -4,4  h -557.9919281005859  c -2,0  -3,1  -4,2  l -4,4  c -1,1  -2,2  -4,2  h -12  c -2,0  -3,-1  -4,-2  l -4,-4  c -1,-1  -2,-2  -4,-2  h -8 a 4 4 0 0,1 -4,-4 z&#10;"/><g data-id="UqIpI@(bJv2mv%Ocw@S_" class="blocklyDraggable" style="display: block;" transform="translate(48, 4)"><path class="blocklyPath" stroke="#92b4be" fill="#c2f0fd" d=" m 8,0  h 271.5119934082031 a 4 4 0 0,1 4,4  v 138 a 4 4 0 0,1 -4,4  V 146  h -271.5119934082031 a 4 4 0 0,1 -4,-4  v -61.5  c 0,-10  -8,8  -8,-7.5  s 8,2.5  8,-7.5  v -61.5 a 4 4 0 0,1 4,-4 z&#10;"/><g data-id=":~O}DxS|K)NA9uZGqv#b" class="blocklyDraggable" style="display: block;" transform="translate(113, 4)"><path class="blocklyPath" stroke="#92b4be" fill="#c2f0fd" d=" m 8,0  h 150.51199340820312 a 4 4 0 0,1 4,4  v 33 a 4 4 0 0,1 -4,4  V 41  h -150.51199340820312 a 4 4 0 0,1 -4,-4  v -9  c 0,-10  -8,8  -8,-7.5  s 8,2.5  8,-7.5  v -9 a 4 4 0 0,1 4,-4 z&#10;"/><g transform="translate(12,14)"><image height="12px" width="12px" alt="“" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAKCAQAAAAqJXdxAAAAn0lEQVQI1z3OMa5BURSF4f/cQhAKjUQhuQmFNwGJEUi0RKN5rU7FHKhpjEH3TEMtkdBSCY1EIv8r7nFX9e29V7EBAOvu7RPjwmWGH/VuF8CyN9/OAdvqIXYLvtRaNjx9mMTDyo+NjAN1HNcl9ZQ5oQMM3dgDUqDo1l8DzvwmtZN7mnD+PkmLa+4mhrxVA9fRowBWmVBhFy5gYEjKMfz9AylsaRRgGzvZAAAAAElFTkSuQmCC"/></g><g class="blocklyEditableText" transform="translate(32,4)" style="cursor: text;"><rect rx="4" ry="4" x="0" y="0" height="33" width="102.51199340820312" class="blocklyFieldRect" stroke="#92b4be" style="display: block;"/><text class="blocklyText" dominant-baseline="central" x="8" y="16.5">收集的資料-</text></g><g transform="translate(142.51199340820312,14)"><image height="12px" width="12px" alt="”" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAKCAQAAAAqJXdxAAAAqUlEQVQI1z3KvUpCcRiA8ef9E4JNHhI0aFEacm1o0BsI0Slx8wa8gLauoDnoBhq7DcfWhggONDmJJgqCPA7neJ7p934EOOKOnM8Q7PDElo/4x4lFb2DmuUjcUzS3URnGib9qaPNbuXvBO3sGPHJDRG6fGVdMSeWDP2q99FQdFrz26Gu5Tq7dFMzUvbXy8KXeAj57cOklgA+u1B5AoslLtGIHQMaCVnwDnADZIFIrXsoXrgAAAABJRU5ErkJggg=="/></g></g><g data-id="R-U]|kL1):]N-8j-:u`|" class="blocklyDraggable" style="display: block;" transform="translate(131.51199340820312, 53)"><path class="blocklyPath" stroke="#bf9197" fill="#ffc1c9" d=" m 20,0  h 108  h 10  q 6.666666666666667,10  0,20  q -6.666666666666667,10  0,20  h -10  V 40  h -108  h -10  q -6.666666666666667,-10  0,-20  q 6.666666666666667,-10  0,-20  h 10 z&#10;"/><g class="blocklyEditableText" transform="translate(32,10)" style="cursor: default;"><text class="blocklyText blocklyDropdownText" dominant-baseline="central" text-anchor="start" x="0" y="10">檔案編號</text><image style="display: none;"/><image height="12px" width="12px" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMi43MSIgaGVpZ2h0PSI4Ljc5IiB2aWV3Qm94PSIwIDAgMTIuNzEgOC43OSI+PHRpdGxlPmRyb3Bkb3duLWFycm93PC90aXRsZT48ZyBvcGFjaXR5PSIwLjEiPjxwYXRoIGQ9Ik0xMi43MSwyLjQ0QTIuNDEsMi40MSwwLDAsMSwxMiw0LjE2TDguMDgsOC4wOGEyLjQ1LDIuNDUsMCwwLDEtMy40NSwwTDAuNzIsNC4xNkEyLjQyLDIuNDIsMCwwLDEsMCwyLjQ0LDIuNDgsMi40OCwwLDAsMSwuNzEuNzFDMSwwLjQ3LDEuNDMsMCw2LjM2LDBTMTEuNzUsMC40NiwxMiwuNzFBMi40NCwyLjQ0LDAsMCwxLDEyLjcxLDIuNDRaIiBmaWxsPSIjMjMxZjIwIi8+PC9nPjxwYXRoIGQ9Ik02LjM2LDcuNzlhMS40MywxLjQzLDAsMCwxLTEtLjQyTDEuNDIsMy40NWExLjQ0LDEuNDQsMCwwLDEsMC0yYzAuNTYtLjU2LDkuMzEtMC41Niw5Ljg3LDBhMS40NCwxLjQ0LDAsMCwxLDAsMkw3LjM3LDcuMzdBMS40MywxLjQzLDAsMCwxLDYuMzYsNy43OVoiIGZpbGw9IiNmZmYiLz48L3N2Zz4=" transform="translate(72,4)"/></g></g><g data-id="|=nFjpLT8r|j|QL_ps-B" class="blocklyDraggable" style="display: block;" transform="translate(129, 101)"><path class="blocklyPath" stroke="#92b4be" fill="#c2f0fd" d=" m 8,0  h 134.51199340820312 a 4 4 0 0,1 4,4  v 33 a 4 4 0 0,1 -4,4  V 41  h -134.51199340820312 a 4 4 0 0,1 -4,-4  v -9  c 0,-10  -8,8  -8,-7.5  s 8,2.5  8,-7.5  v -9 a 4 4 0 0,1 4,-4 z&#10;"/><g transform="translate(12,14)"><image height="12px" width="12px" alt="“" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAKCAQAAAAqJXdxAAAAn0lEQVQI1z3OMa5BURSF4f/cQhAKjUQhuQmFNwGJEUi0RKN5rU7FHKhpjEH3TEMtkdBSCY1EIv8r7nFX9e29V7EBAOvu7RPjwmWGH/VuF8CyN9/OAdvqIXYLvtRaNjx9mMTDyo+NjAN1HNcl9ZQ5oQMM3dgDUqDo1l8DzvwmtZN7mnD+PkmLa+4mhrxVA9fRowBWmVBhFy5gYEjKMfz9AylsaRRgGzvZAAAAAElFTkSuQmCC"/></g><g class="blocklyEditableText" transform="translate(32,4)" style="cursor: text;"><rect rx="4" ry="4" x="0" y="0" height="33" width="86.51199340820312" class="blocklyFieldRect" stroke="#92b4be" style="display: block;"/><text class="blocklyText" dominant-baseline="central" x="8" y="16.5">-模型輸入</text></g><g transform="translate(126.51199340820312,14)"><image height="12px" width="12px" alt="”" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAKCAQAAAAqJXdxAAAAqUlEQVQI1z3KvUpCcRiA8ef9E4JNHhI0aFEacm1o0BsI0Slx8wa8gLauoDnoBhq7DcfWhggONDmJJgqCPA7neJ7p934EOOKOnM8Q7PDElo/4x4lFb2DmuUjcUzS3URnGib9qaPNbuXvBO3sGPHJDRG6fGVdMSeWDP2q99FQdFrz26Gu5Tq7dFMzUvbXy8KXeAj57cOklgA+u1B5AoslLtGIHQMaCVnwDnADZIFIrXsoXrgAAAABJRU5ErkJggg=="/></g></g><g transform="translate(41,14.5)"><text class="blocklyText" dominant-baseline="central" x="0" y="10">組合文字</text></g><g class="blocklyIconGroup blockly-icon-mutator" transform="translate(16, 16)"><rect class="blocklyIconShape" rx="4" ry="4" height="16" width="16"/><path class="blocklyIconSymbol" d="m4.203,7.296 0,1.368 -0.92,0.677 -0.11,0.41 0.9,1.559 0.41,0.11 1.043,-0.457 1.187,0.683 0.127,1.134 0.3,0.3 1.8,0 0.3,-0.299 0.127,-1.138 1.185,-0.682 1.046,0.458 0.409,-0.11 0.9,-1.559 -0.11,-0.41 -0.92,-0.677 0,-1.366 0.92,-0.677 0.11,-0.41 -0.9,-1.559 -0.409,-0.109 -1.046,0.458 -1.185,-0.682 -0.127,-1.138 -0.3,-0.299 -1.8,0 -0.3,0.3 -0.126,1.135 -1.187,0.682 -1.043,-0.457 -0.41,0.11 -0.899,1.559 0.108,0.409z"/><circle class="blocklyIconShape" r="2.7" cx="8" cy="8"/></g></g><g data-id="$[HrKPiuVks=t;h8nO[X" class="blocklyDraggable" style="display: block;" transform="translate(485.99192810058594, 57)"><path class="blocklyPath" stroke="#bf9197" fill="#ffc1c9" d=" m 20,0  h 76  h 10  q 6.666666666666667,10  0,20  q -6.666666666666667,10  0,20  h -10  V 40  h -76  h -10  q -6.666666666666667,-10  0,-20  q 6.666666666666667,-10  0,-20  h 10 z&#10;"/><g class="blocklyEditableText" transform="translate(32,10)" style="cursor: default;"><text class="blocklyText blocklyDropdownText" dominant-baseline="central" text-anchor="start" x="0" y="10">題目</text><image style="display: none;"/><image height="12px" width="12px" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMi43MSIgaGVpZ2h0PSI4Ljc5IiB2aWV3Qm94PSIwIDAgMTIuNzEgOC43OSI+PHRpdGxlPmRyb3Bkb3duLWFycm93PC90aXRsZT48ZyBvcGFjaXR5PSIwLjEiPjxwYXRoIGQ9Ik0xMi43MSwyLjQ0QTIuNDEsMi40MSwwLDAsMSwxMiw0LjE2TDguMDgsOC4wOGEyLjQ1LDIuNDUsMCwwLDEtMy40NSwwTDAuNzIsNC4xNkEyLjQyLDIuNDIsMCwwLDEsMCwyLjQ0LDIuNDgsMi40OCwwLDAsMSwuNzEuNzFDMSwwLjQ3LDEuNDMsMCw2LjM2LDBTMTEuNzUsMC40NiwxMiwuNzFBMi40NCwyLjQ0LDAsMCwxLDEyLjcxLDIuNDRaIiBmaWxsPSIjMjMxZjIwIi8+PC9nPjxwYXRoIGQ9Ik02LjM2LDcuNzlhMS40MywxLjQzLDAsMCwxLTEtLjQyTDEuNDIsMy40NWExLjQ0LDEuNDQsMCwwLDEsMC0yYzAuNTYtLjU2LDkuMzEtMC41Niw5Ljg3LDBhMS40NCwxLjQ0LDAsMCwxLDAsMkw3LjM3LDcuMzdBMS40MywxLjQzLDAsMCwxLDYuMzYsNy43OVoiIGZpbGw9IiNmZmYiLz48L3N2Zz4=" transform="translate(40,4)"/></g></g><g data-id="rfZEG3^i?]Rl1YmgXVXI" class="blocklyDraggable" transform="translate(0, 154)"><path class="blocklyPath" stroke="#bdae7a" fill="#fce8a2" d=" m 0,0  m 0,4 a 4 4 0 0,1 4,-4  h 8  c 2,0  3,1  4,2  l 4,4  c 1,1  2,2  4,2  h 12  c 2,0  3,-1  4,-2  l 4,-4  c 1,-1  2,-2  4,-2  h 388 a 4 4 0 0,1 4,4  v 8  V 44  V 44 a 4 4 0 0,1 -4,4  h -388  c -2,0  -3,1  -4,2  l -4,4  c -1,1  -2,2  -4,2  h -12  c -2,0  -3,-1  -4,-2  l -4,-4  c -1,-1  -2,-2  -4,-2  h -8 a 4 4 0 0,1 -4,-4 z&#10;"/><g data-id="*-mE~Mw$;=V337WR/Q#w" class="blocklyDraggable" style="display: block;" transform="translate(244, 4)"><path class="blocklyPath" stroke="#bf9197" fill="#ffc1c9" d=" m 20,0  h 76  h 20  l -20,40  V 40  h -76  l -20,-40  h 20 z&#10;"/><g class="blocklyEditableText" transform="translate(32,10)" style="cursor: default;"><text class="blocklyText blocklyDropdownText" dominant-baseline="central" text-anchor="start" x="0" y="10">題目</text><image style="display: none;"/><image height="12px" width="12px" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMi43MSIgaGVpZ2h0PSI4Ljc5IiB2aWV3Qm94PSIwIDAgMTIuNzEgOC43OSI+PHRpdGxlPmRyb3Bkb3duLWFycm93PC90aXRsZT48ZyBvcGFjaXR5PSIwLjEiPjxwYXRoIGQ9Ik0xMi43MSwyLjQ0QTIuNDEsMi40MSwwLDAsMSwxMiw0LjE2TDguMDgsOC4wOGEyLjQ1LDIuNDUsMCwwLDEtMy40NSwwTDAuNzIsNC4xNkEyLjQyLDIuNDIsMCwwLDEsMCwyLjQ0LDIuNDgsMi40OCwwLDAsMSwuNzEuNzFDMSwwLjQ3LDEuNDMsMCw2LjM2LDBTMTEuNzUsMC40NiwxMiwuNzFBMi40NCwyLjQ0LDAsMCwxLDEyLjcxLDIuNDRaIiBmaWxsPSIjMjMxZjIwIi8+PC9nPjxwYXRoIGQ9Ik02LjM2LDcuNzlhMS40MywxLjQzLDAsMCwxLTEtLjQyTDEuNDIsMy40NWExLjQ0LDEuNDQsMCwwLDEsMC0yYzAuNTYtLjU2LDkuMzEtMC41Niw5Ljg3LDBhMS40NCwxLjQ0LDAsMCwxLDAsMkw3LjM3LDcuMzdBMS40MywxLjQzLDAsMCwxLDYuMzYsNy43OVoiIGZpbGw9IiNmZmYiLz48L3N2Zz4=" transform="translate(40,4)"/></g></g><g data-id="Fg@=Du;q;,Md3*j4yo=z" class="blocklyDraggable" transform="translate(0, 48)"><path class="blocklyPath" stroke="#b09d9d" fill="#ebd1d1" d=" m 0,0  m 0,4 a 4 4 0 0,1 4,-4  h 8  c 2,0  3,1  4,2  l 4,4  c 1,1  2,2  4,2  h 12  c 2,0  3,-1  4,-2  l 4,-4  c 1,-1  2,-2  4,-2  h 557.9919281005859 a 4 4 0 0,1 4,4  v 8  V 150  V 150 a 4 4 0 0,1 -4,4  h -557.9919281005859  c -2,0  -3,1  -4,2  l -4,4  c -1,1  -2,2  -4,2  h -12  c -2,0  -3,-1  -4,-2  l -4,-4  c -1,-1  -2,-2  -4,-2  h -8 a 4 4 0 0,1 -4,-4 z&#10;"/><g data-id="}jy3v|bcys%XgG^Wf%k," class="blocklyDraggable" style="display: block;" transform="translate(48, 4)"><path class="blocklyPath" stroke="#92b4be" fill="#c2f0fd" d=" m 8,0  h 271.5119934082031 a 4 4 0 0,1 4,4  v 138 a 4 4 0 0,1 -4,4  V 146  h -271.5119934082031 a 4 4 0 0,1 -4,-4  v -61.5  c 0,-10  -8,8  -8,-7.5  s 8,2.5  8,-7.5  v -61.5 a 4 4 0 0,1 4,-4 z&#10;"/><g data-id="usVlH21m4l`J*#=2oDX{" class="blocklyDraggable" style="display: block;" transform="translate(113, 4)"><path class="blocklyPath" stroke="#92b4be" fill="#c2f0fd" d=" m 8,0  h 150.51199340820312 a 4 4 0 0,1 4,4  v 33 a 4 4 0 0,1 -4,4  V 41  h -150.51199340820312 a 4 4 0 0,1 -4,-4  v -9  c 0,-10  -8,8  -8,-7.5  s 8,2.5  8,-7.5  v -9 a 4 4 0 0,1 4,-4 z&#10;"/><g transform="translate(12,14)"><image height="12px" width="12px" alt="“" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAKCAQAAAAqJXdxAAAAn0lEQVQI1z3OMa5BURSF4f/cQhAKjUQhuQmFNwGJEUi0RKN5rU7FHKhpjEH3TEMtkdBSCY1EIv8r7nFX9e29V7EBAOvu7RPjwmWGH/VuF8CyN9/OAdvqIXYLvtRaNjx9mMTDyo+NjAN1HNcl9ZQ5oQMM3dgDUqDo1l8DzvwmtZN7mnD+PkmLa+4mhrxVA9fRowBWmVBhFy5gYEjKMfz9AylsaRRgGzvZAAAAAElFTkSuQmCC"/></g><g class="blocklyEditableText" transform="translate(32,4)" style="cursor: text;"><rect rx="4" ry="4" x="0" y="0" height="33" width="102.51199340820312" class="blocklyFieldRect" stroke="#92b4be" style="display: block;"/><text class="blocklyText" dominant-baseline="central" x="8" y="16.5">收集的資料-</text></g><g transform="translate(142.51199340820312,14)"><image height="12px" width="12px" alt="”" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAKCAQAAAAqJXdxAAAAqUlEQVQI1z3KvUpCcRiA8ef9E4JNHhI0aFEacm1o0BsI0Slx8wa8gLauoDnoBhq7DcfWhggONDmJJgqCPA7neJ7p934EOOKOnM8Q7PDElo/4x4lFb2DmuUjcUzS3URnGib9qaPNbuXvBO3sGPHJDRG6fGVdMSeWDP2q99FQdFrz26Gu5Tq7dFMzUvbXy8KXeAj57cOklgA+u1B5AoslLtGIHQMaCVnwDnADZIFIrXsoXrgAAAABJRU5ErkJggg=="/></g></g><g data-id="}*=K~{Le=!Ra32U,Kzdu" class="blocklyDraggable" style="display: block;" transform="translate(131.51199340820312, 53)"><path class="blocklyPath" stroke="#bf9197" fill="#ffc1c9" d=" m 20,0  h 108  h 10  q 6.666666666666667,10  0,20  q -6.666666666666667,10  0,20  h -10  V 40  h -108  h -10  q -6.666666666666667,-10  0,-20  q 6.666666666666667,-10  0,-20  h 10 z&#10;"/><g class="blocklyEditableText" transform="translate(32,10)" style="cursor: default;"><text class="blocklyText blocklyDropdownText" dominant-baseline="central" text-anchor="start" x="0" y="10">檔案編號</text><image style="display: none;"/><image height="12px" width="12px" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMi43MSIgaGVpZ2h0PSI4Ljc5IiB2aWV3Qm94PSIwIDAgMTIuNzEgOC43OSI+PHRpdGxlPmRyb3Bkb3duLWFycm93PC90aXRsZT48ZyBvcGFjaXR5PSIwLjEiPjxwYXRoIGQ9Ik0xMi43MSwyLjQ0QTIuNDEsMi40MSwwLDAsMSwxMiw0LjE2TDguMDgsOC4wOGEyLjQ1LDIuNDUsMCwwLDEtMy40NSwwTDAuNzIsNC4xNkEyLjQyLDIuNDIsMCwwLDEsMCwyLjQ0LDIuNDgsMi40OCwwLDAsMSwuNzEuNzFDMSwwLjQ3LDEuNDMsMCw2LjM2LDBTMTEuNzUsMC40NiwxMiwuNzFBMi40NCwyLjQ0LDAsMCwxLDEyLjcxLDIuNDRaIiBmaWxsPSIjMjMxZjIwIi8+PC9nPjxwYXRoIGQ9Ik02LjM2LDcuNzlhMS40MywxLjQzLDAsMCwxLTEtLjQyTDEuNDIsMy40NWExLjQ0LDEuNDQsMCwwLDEsMC0yYzAuNTYtLjU2LDkuMzEtMC41Niw5Ljg3LDBhMS40NCwxLjQ0LDAsMCwxLDAsMkw3LjM3LDcuMzdBMS40MywxLjQzLDAsMCwxLDYuMzYsNy43OVoiIGZpbGw9IiNmZmYiLz48L3N2Zz4=" transform="translate(72,4)"/></g></g><g data-id="f!X-,|xVbpZ{XoW4C(S!" class="blocklyDraggable" style="display: block;" transform="translate(129, 101)"><path class="blocklyPath" stroke="#92b4be" fill="#c2f0fd" d=" m 8,0  h 134.51199340820312 a 4 4 0 0,1 4,4  v 33 a 4 4 0 0,1 -4,4  V 41  h -134.51199340820312 a 4 4 0 0,1 -4,-4  v -9  c 0,-10  -8,8  -8,-7.5  s 8,2.5  8,-7.5  v -9 a 4 4 0 0,1 4,-4 z&#10;"/><g transform="translate(12,14)"><image height="12px" width="12px" alt="“" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAKCAQAAAAqJXdxAAAAn0lEQVQI1z3OMa5BURSF4f/cQhAKjUQhuQmFNwGJEUi0RKN5rU7FHKhpjEH3TEMtkdBSCY1EIv8r7nFX9e29V7EBAOvu7RPjwmWGH/VuF8CyN9/OAdvqIXYLvtRaNjx9mMTDyo+NjAN1HNcl9ZQ5oQMM3dgDUqDo1l8DzvwmtZN7mnD+PkmLa+4mhrxVA9fRowBWmVBhFy5gYEjKMfz9AylsaRRgGzvZAAAAAElFTkSuQmCC"/></g><g class="blocklyEditableText" transform="translate(32,4)" style="cursor: text;"><rect rx="4" ry="4" x="0" y="0" height="33" width="86.51199340820312" class="blocklyFieldRect" stroke="#92b4be" style="display: block;"/><text class="blocklyText" dominant-baseline="central" x="8" y="16.5">-模型輸出</text></g><g transform="translate(126.51199340820312,14)"><image height="12px" width="12px" alt="”" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAKCAQAAAAqJXdxAAAAqUlEQVQI1z3KvUpCcRiA8ef9E4JNHhI0aFEacm1o0BsI0Slx8wa8gLauoDnoBhq7DcfWhggONDmJJgqCPA7neJ7p934EOOKOnM8Q7PDElo/4x4lFb2DmuUjcUzS3URnGib9qaPNbuXvBO3sGPHJDRG6fGVdMSeWDP2q99FQdFrz26Gu5Tq7dFMzUvbXy8KXeAj57cOklgA+u1B5AoslLtGIHQMaCVnwDnADZIFIrXsoXrgAAAABJRU5ErkJggg=="/></g></g><g transform="translate(41,14.5)"><text class="blocklyText" dominant-baseline="central" x="0" y="10">組合文字</text></g><g class="blocklyIconGroup blockly-icon-mutator" transform="translate(16, 16)"><rect class="blocklyIconShape" rx="4" ry="4" height="16" width="16"/><path class="blocklyIconSymbol" d="m4.203,7.296 0,1.368 -0.92,0.677 -0.11,0.41 0.9,1.559 0.41,0.11 1.043,-0.457 1.187,0.683 0.127,1.134 0.3,0.3 1.8,0 0.3,-0.299 0.127,-1.138 1.185,-0.682 1.046,0.458 0.409,-0.11 0.9,-1.559 -0.11,-0.41 -0.92,-0.677 0,-1.366 0.92,-0.677 0.11,-0.41 -0.9,-1.559 -0.409,-0.109 -1.046,0.458 -1.185,-0.682 -0.127,-1.138 -0.3,-0.299 -1.8,0 -0.3,0.3 -0.126,1.135 -1.187,0.682 -1.043,-0.457 -0.41,0.11 -0.899,1.559 0.108,0.409z"/><circle class="blocklyIconShape" r="2.7" cx="8" cy="8"/></g></g><g data-id="fA@dqW:vyMDINqpCWCkC" class="blocklyDraggable" style="display: block;" transform="translate(485.99192810058594, 57)"><path class="blocklyPath" stroke="#bf9197" fill="#ffc1c9" d=" m 20,0  h 76  h 10  q 6.666666666666667,10  0,20  q -6.666666666666667,10  0,20  h -10  V 40  h -76  h -10  q -6.666666666666667,-10  0,-20  q 6.666666666666667,-10  0,-20  h 10 z&#10;"/><g class="blocklyEditableText" transform="translate(32,10)" style="cursor: default;"><text class="blocklyText blocklyDropdownText" dominant-baseline="central" text-anchor="start" x="0" y="10">答案</text><image style="display: none;"/><image height="12px" width="12px" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMi43MSIgaGVpZ2h0PSI4Ljc5IiB2aWV3Qm94PSIwIDAgMTIuNzEgOC43OSI+PHRpdGxlPmRyb3Bkb3duLWFycm93PC90aXRsZT48ZyBvcGFjaXR5PSIwLjEiPjxwYXRoIGQ9Ik0xMi43MSwyLjQ0QTIuNDEsMi40MSwwLDAsMSwxMiw0LjE2TDguMDgsOC4wOGEyLjQ1LDIuNDUsMCwwLDEtMy40NSwwTDAuNzIsNC4xNkEyLjQyLDIuNDIsMCwwLDEsMCwyLjQ0LDIuNDgsMi40OCwwLDAsMSwuNzEuNzFDMSwwLjQ3LDEuNDMsMCw2LjM2LDBTMTEuNzUsMC40NiwxMiwuNzFBMi40NCwyLjQ0LDAsMCwxLDEyLjcxLDIuNDRaIiBmaWxsPSIjMjMxZjIwIi8+PC9nPjxwYXRoIGQ9Ik02LjM2LDcuNzlhMS40MywxLjQzLDAsMCwxLTEtLjQyTDEuNDIsMy40NWExLjQ0LDEuNDQsMCwwLDEsMC0yYzAuNTYtLjU2LDkuMzEtMC41Niw5Ljg3LDBhMS40NCwxLjQ0LDAsMCwxLDAsMkw3LjM3LDcuMzdBMS40MywxLjQzLDAsMCwxLDYuMzYsNy43OVoiIGZpbGw9IiNmZmYiLz48L3N2Zz4=" transform="translate(40,4)"/></g></g><g data-id="tI=cFmTS5`)x;$zzA/!=" class="blocklyDraggable" transform="translate(0, 154)"><path class="blocklyPath" stroke="#bdae7a" fill="#fce8a2" d=" m 0,0  m 0,4 a 4 4 0 0,1 4,-4  h 8  c 2,0  3,1  4,2  l 4,4  c 1,1  2,2  4,2  h 12  c 2,0  3,-1  4,-2  l 4,-4  c 1,-1  2,-2  4,-2  h 388 a 4 4 0 0,1 4,4  v 8  V 44  V 44 a 4 4 0 0,1 -4,4  h -388  c -2,0  -3,1  -4,2  l -4,4  c -1,1  -2,2  -4,2  h -12  c -2,0  -3,-1  -4,-2  l -4,-4  c -1,-1  -2,-2  -4,-2  h -8 a 4 4 0 0,1 -4,-4 z&#10;"/><g data-id="R_JuQg!J3[/rMdGbv{S]" class="blocklyDraggable" style="display: block;" transform="translate(244, 4)"><path class="blocklyPath" stroke="#bf9197" fill="#ffc1c9" d=" m 20,0  h 76  h 20  l -20,40  V 40  h -76  l -20,-40  h 20 z&#10;"/><g class="blocklyEditableText" transform="translate(32,10)" style="cursor: default;"><text class="blocklyText blocklyDropdownText" dominant-baseline="central" text-anchor="start" x="0" y="10">答案</text><image style="display: none;"/><image height="12px" width="12px" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMi43MSIgaGVpZ2h0PSI4Ljc5IiB2aWV3Qm94PSIwIDAgMTIuNzEgOC43OSI+PHRpdGxlPmRyb3Bkb3duLWFycm93PC90aXRsZT48ZyBvcGFjaXR5PSIwLjEiPjxwYXRoIGQ9Ik0xMi43MSwyLjQ0QTIuNDEsMi40MSwwLDAsMSwxMiw0LjE2TDguMDgsOC4wOGEyLjQ1LDIuNDUsMCwwLDEtMy40NSwwTDAuNzIsNC4xNkEyLjQyLDIuNDIsMCwwLDEsMCwyLjQ0LDIuNDgsMi40OCwwLDAsMSwuNzEuNzFDMSwwLjQ3LDEuNDMsMCw2LjM2LDBTMTEuNzUsMC40NiwxMiwuNzFBMi40NCwyLjQ0LDAsMCwxLDEyLjcxLDIuNDRaIiBmaWxsPSIjMjMxZjIwIi8+PC9nPjxwYXRoIGQ9Ik02LjM2LDcuNzlhMS40MywxLjQzLDAsMCwxLTEtLjQyTDEuNDIsMy40NWExLjQ0LDEuNDQsMCwwLDEsMC0yYzAuNTYtLjU2LDkuMzEtMC41Niw5Ljg3LDBhMS40NCwxLjQ0LDAsMCwxLDAsMkw3LjM3LDcuMzdBMS40MywxLjQzLDAsMCwxLDYuMzYsNy43OVoiIGZpbGw9IiNmZmYiLz48L3N2Zz4=" transform="translate(40,4)"/></g></g><g transform="translate(8,14)"><text class="blocklyText" dominant-baseline="central" x="0" y="10">在</text></g><g class="blocklyEditableText" transform="translate(48,7.5)" style="cursor: default;"><rect rx="4" ry="4" x="0" y="0" height="33" width="100" class="blocklyFieldRect blocklyDropdownRect" stroke="#bdae7a" fill="transparent"/><text class="blocklyText blocklyDropdownText" dominant-baseline="central" text-anchor="start" x="8" y="16.5">模型輸出</text><image style="display: none;"/><image height="12px" width="12px" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMi43MSIgaGVpZ2h0PSI4Ljc5IiB2aWV3Qm94PSIwIDAgMTIuNzEgOC43OSI+PHRpdGxlPmRyb3Bkb3duLWFycm93PC90aXRsZT48ZyBvcGFjaXR5PSIwLjEiPjxwYXRoIGQ9Ik0xMi43MSwyLjQ0QTIuNDEsMi40MSwwLDAsMSwxMiw0LjE2TDguMDgsOC4wOGEyLjQ1LDIuNDUsMCwwLDEtMy40NSwwTDAuNzIsNC4xNkEyLjQyLDIuNDIsMCwwLDEsMCwyLjQ0LDIuNDgsMi40OCwwLDAsMSwuNzEuNzFDMSwwLjQ3LDEuNDMsMCw2LjM2LDBTMTEuNzUsMC40NiwxMiwuNzFBMi40NCwyLjQ0LDAsMCwxLDEyLjcxLDIuNDRaIiBmaWxsPSIjMjMxZjIwIi8+PC9nPjxwYXRoIGQ9Ik02LjM2LDcuNzlhMS40MywxLjQzLDAsMCwxLTEtLjQyTDEuNDIsMy40NWExLjQ0LDEuNDQsMCwwLDEsMC0yYzAuNTYtLjU2LDkuMzEtMC41Niw5Ljg3LDBhMS40NCwxLjQ0LDAsMCwxLDAsMkw3LjM3LDcuMzdBMS40MywxLjQzLDAsMCwxLDYuMzYsNy43OVoiIGZpbGw9IiNmZmYiLz48L3N2Zz4=" transform="translate(80,10.5)"/></g><g transform="translate(156,14)"><text class="blocklyText" dominant-baseline="central" x="0" y="10">後串接所有</text></g><g transform="translate(368,14)"><text class="blocklyText" dominant-baseline="central" x="0" y="10">中的項目</text></g></g><g transform="translate(8,67)"><text class="blocklyText" dominant-baseline="central" x="0" y="10">將</text></g><g transform="translate(343.5119934082031,67)"><text class="blocklyText" dominant-baseline="central" x="0" y="10">.pickle 的內容存入</text></g></g><g transform="translate(8,14)"><text class="blocklyText" dominant-baseline="central" x="0" y="10">在</text></g><g class="blocklyEditableText" transform="translate(48,7.5)" style="cursor: default;"><rect rx="4" ry="4" x="0" y="0" height="33" width="100" class="blocklyFieldRect blocklyDropdownRect" stroke="#bdae7a" fill="transparent"/><text class="blocklyText blocklyDropdownText" dominant-baseline="central" text-anchor="start" x="8" y="16.5">模型輸入</text><image style="display: none;"/><image height="12px" width="12px" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMi43MSIgaGVpZ2h0PSI4Ljc5IiB2aWV3Qm94PSIwIDAgMTIuNzEgOC43OSI+PHRpdGxlPmRyb3Bkb3duLWFycm93PC90aXRsZT48ZyBvcGFjaXR5PSIwLjEiPjxwYXRoIGQ9Ik0xMi43MSwyLjQ0QTIuNDEsMi40MSwwLDAsMSwxMiw0LjE2TDguMDgsOC4wOGEyLjQ1LDIuNDUsMCwwLDEtMy40NSwwTDAuNzIsNC4xNkEyLjQyLDIuNDIsMCwwLDEsMCwyLjQ0LDIuNDgsMi40OCwwLDAsMSwuNzEuNzFDMSwwLjQ3LDEuNDMsMCw2LjM2LDBTMTEuNzUsMC40NiwxMiwuNzFBMi40NCwyLjQ0LDAsMCwxLDEyLjcxLDIuNDRaIiBmaWxsPSIjMjMxZjIwIi8+PC9nPjxwYXRoIGQ9Ik02LjM2LDcuNzlhMS40MywxLjQzLDAsMCwxLTEtLjQyTDEuNDIsMy40NWExLjQ0LDEuNDQsMCwwLDEsMC0yYzAuNTYtLjU2LDkuMzEtMC41Niw5Ljg3LDBhMS40NCwxLjQ0LDAsMCwxLDAsMkw3LjM3LDcuMzdBMS40MywxLjQzLDAsMCwxLDYuMzYsNy43OVoiIGZpbGw9IiNmZmYiLz48L3N2Zz4=" transform="translate(80,10.5)"/></g><g transform="translate(156,14)"><text class="blocklyText" dominant-baseline="central" x="0" y="10">後串接所有</text></g><g transform="translate(368,14)"><text class="blocklyText" dominant-baseline="central" x="0" y="10">中的項目</text></g></g><g transform="translate(8,67)"><text class="blocklyText" dominant-baseline="central" x="0" y="10">將</text></g><g transform="translate(343.5119934082031,67)"><text class="blocklyText" dominant-baseline="central" x="0" y="10">.pickle 的內容存入</text></g></g><g data-id="y^![)e(?WbjwXY//^dn_" class="blocklyDraggable" transform="translate(0, 485)"><path class="blocklyPath" stroke="#baa0ba" fill="#f8d5f8" d=" m 0,0  m 0,4 a 4 4 0 0,1 4,-4  h 8  c 2,0  3,1  4,2  l 4,4  c 1,1  2,2  4,2  h 12  c 2,0  3,-1  4,-2  l 4,-4  c 1,-1  2,-2  4,-2  h 784 a 4 4 0 0,1 4,4  v 8  V 48  V 56  V 96  V 100  V 100 a 4 4 0 0,1 -4,4  h -784  c -2,0  -3,1  -4,2  l -4,4  c -1,1  -2,2  -4,2  h -12  c -2,0  -3,-1  -4,-2  l -4,-4  c -1,-1  -2,-2  -4,-2  h -8 a 4 4 0 0,1 -4,-4 z&#10;"/><g data-id="Map{uYn(iJd~/Vy@M%?j" class="blocklyDraggable" style="display: block;" transform="translate(112, 8)"><path class="blocklyPath" stroke="#bf9197" fill="#ffc1c9" d=" m 20,0  h 108  h 20  l -20,40  V 40  h -108  l -20,-40  h 20 z&#10;"/><g class="blocklyEditableText" transform="translate(32,10)" style="cursor: default;"><text class="blocklyText blocklyDropdownText" dominant-baseline="central" text-anchor="start" x="0" y="10">模型輸入</text><image style="display: none;"/><image height="12px" width="12px" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMi43MSIgaGVpZ2h0PSI4Ljc5IiB2aWV3Qm94PSIwIDAgMTIuNzEgOC43OSI+PHRpdGxlPmRyb3Bkb3duLWFycm93PC90aXRsZT48ZyBvcGFjaXR5PSIwLjEiPjxwYXRoIGQ9Ik0xMi43MSwyLjQ0QTIuNDEsMi40MSwwLDAsMSwxMiw0LjE2TDguMDgsOC4wOGEyLjQ1LDIuNDUsMCwwLDEtMy40NSwwTDAuNzIsNC4xNkEyLjQyLDIuNDIsMCwwLDEsMCwyLjQ0LDIuNDgsMi40OCwwLDAsMSwuNzEuNzFDMSwwLjQ3LDEuNDMsMCw2LjM2LDBTMTEuNzUsMC40NiwxMiwuNzFBMi40NCwyLjQ0LDAsMCwxLDEyLjcxLDIuNDRaIiBmaWxsPSIjMjMxZjIwIi8+PC9nPjxwYXRoIGQ9Ik02LjM2LDcuNzlhMS40MywxLjQzLDAsMCwxLTEtLjQyTDEuNDIsMy40NWExLjQ0LDEuNDQsMCwwLDEsMC0yYzAuNTYtLjU2LDkuMzEtMC41Niw5Ljg3LDBhMS40NCwxLjQ0LDAsMCwxLDAsMkw3LjM3LDcuMzdBMS40MywxLjQzLDAsMCwxLDYuMzYsNy43OVoiIGZpbGw9IiNmZmYiLz48L3N2Zz4=" transform="translate(72,4)"/></g></g><g data-id="#wy{F15UEKG%{jtu8I0h" class="blocklyDraggable" style="display: block;" transform="translate(356, 8)"><path class="blocklyPath" stroke="#bf9197" fill="#ffc1c9" d=" m 20,0  h 108  h 20  l -20,40  V 40  h -108  l -20,-40  h 20 z&#10;"/><g class="blocklyEditableText" transform="translate(32,10)" style="cursor: default;"><text class="blocklyText blocklyDropdownText" dominant-baseline="central" text-anchor="start" x="0" y="10">模型輸出</text><image style="display: none;"/><image height="12px" width="12px" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMi43MSIgaGVpZ2h0PSI4Ljc5IiB2aWV3Qm94PSIwIDAgMTIuNzEgOC43OSI+PHRpdGxlPmRyb3Bkb3duLWFycm93PC90aXRsZT48ZyBvcGFjaXR5PSIwLjEiPjxwYXRoIGQ9Ik0xMi43MSwyLjQ0QTIuNDEsMi40MSwwLDAsMSwxMiw0LjE2TDguMDgsOC4wOGEyLjQ1LDIuNDUsMCwwLDEtMy40NSwwTDAuNzIsNC4xNkEyLjQyLDIuNDIsMCwwLDEsMCwyLjQ0LDIuNDgsMi40OCwwLDAsMSwuNzEuNzFDMSwwLjQ3LDEuNDMsMCw2LjM2LDBTMTEuNzUsMC40NiwxMiwuNzFBMi40NCwyLjQ0LDAsMCwxLDEyLjcxLDIuNDRaIiBmaWxsPSIjMjMxZjIwIi8+PC9nPjxwYXRoIGQ9Ik02LjM2LDcuNzlhMS40MywxLjQzLDAsMCwxLTEtLjQyTDEuNDIsMy40NWExLjQ0LDEuNDQsMCwwLDEsMC0yYzAuNTYtLjU2LDkuMzEtMC41Niw5Ljg3LDBhMS40NCwxLjQ0LDAsMCwxLDAsMkw3LjM3LDcuMzdBMS40MywxLjQzLDAsMCwxLDYuMzYsNy43OVoiIGZpbGw9IiNmZmYiLz48L3N2Zz4=" transform="translate(72,4)"/></g></g><g data-id="?|W~MJ7:a?X4a#uZzBbs" style="display: block;" transform="translate(536, 12)"><path class="blocklyPath" stroke="#baa0ba" fill="#fff" d=" m 16,0  h 14.239990234375 a 16 16 0 0,1 16,16  v 0 a 16 16 0 0,1 -16,16  V 32  h -14.239990234375 a 16 16 0 0,1 -16,-16  v 0 a 16 16 0 0,1 16,-16 z&#10;"/><g class="blocklyEditableText" transform="translate(12,6)" style="cursor: text;"><rect rx="4" ry="4" x="0" y="0" height="20" width="22.239990234375" class="blocklyFieldRect" style="display: none;"/><text class="blocklyText" dominant-baseline="central" x="0" y="10">0.2</text></g></g><g data-id="~(S(_yhMwNIzt73-j6B+" class="blocklyDraggable" style="display: block;" transform="translate(140, 56)"><path class="blocklyPath" stroke="#bf9197" fill="#ffc1c9" d=" m 20,0  h 108  h 20  l -20,40  V 40  h -108  l -20,-40  h 20 z&#10;"/><g class="blocklyEditableText" transform="translate(32,10)" style="cursor: default;"><text class="blocklyText blocklyDropdownText" dominant-baseline="central" text-anchor="start" x="0" y="10">訓練輸入</text><image style="display: none;"/><image height="12px" width="12px" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMi43MSIgaGVpZ2h0PSI4Ljc5IiB2aWV3Qm94PSIwIDAgMTIuNzEgOC43OSI+PHRpdGxlPmRyb3Bkb3duLWFycm93PC90aXRsZT48ZyBvcGFjaXR5PSIwLjEiPjxwYXRoIGQ9Ik0xMi43MSwyLjQ0QTIuNDEsMi40MSwwLDAsMSwxMiw0LjE2TDguMDgsOC4wOGEyLjQ1LDIuNDUsMCwwLDEtMy40NSwwTDAuNzIsNC4xNkEyLjQyLDIuNDIsMCwwLDEsMCwyLjQ0LDIuNDgsMi40OCwwLDAsMSwuNzEuNzFDMSwwLjQ3LDEuNDMsMCw2LjM2LDBTMTEuNzUsMC40NiwxMiwuNzFBMi40NCwyLjQ0LDAsMCwxLDEyLjcxLDIuNDRaIiBmaWxsPSIjMjMxZjIwIi8+PC9nPjxwYXRoIGQ9Ik02LjM2LDcuNzlhMS40MywxLjQzLDAsMCwxLTEtLjQyTDEuNDIsMy40NWExLjQ0LDEuNDQsMCwwLDEsMC0yYzAuNTYtLjU2LDkuMzEtMC41Niw5Ljg3LDBhMS40NCwxLjQ0LDAsMCwxLDAsMkw3LjM3LDcuMzdBMS40MywxLjQzLDAsMCwxLDYuMzYsNy43OVoiIGZpbGw9IiNmZmYiLz48L3N2Zz4=" transform="translate(72,4)"/></g></g><g data-id="DG0wesc0b{Iu$M`*tg{+" class="blocklyDraggable" style="display: block;" transform="translate(320, 56)"><path class="blocklyPath" stroke="#bf9197" fill="#ffc1c9" d=" m 20,0  h 108  h 20  l -20,40  V 40  h -108  l -20,-40  h 20 z&#10;"/><g class="blocklyEditableText" transform="translate(32,10)" style="cursor: default;"><text class="blocklyText blocklyDropdownText" dominant-baseline="central" text-anchor="start" x="0" y="10">測試輸入</text><image style="display: none;"/><image height="12px" width="12px" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMi43MSIgaGVpZ2h0PSI4Ljc5IiB2aWV3Qm94PSIwIDAgMTIuNzEgOC43OSI+PHRpdGxlPmRyb3Bkb3duLWFycm93PC90aXRsZT48ZyBvcGFjaXR5PSIwLjEiPjxwYXRoIGQ9Ik0xMi43MSwyLjQ0QTIuNDEsMi40MSwwLDAsMSwxMiw0LjE2TDguMDgsOC4wOGEyLjQ1LDIuNDUsMCwwLDEtMy40NSwwTDAuNzIsNC4xNkEyLjQyLDIuNDIsMCwwLDEsMCwyLjQ0LDIuNDgsMi40OCwwLDAsMSwuNzEuNzFDMSwwLjQ3LDEuNDMsMCw2LjM2LDBTMTEuNzUsMC40NiwxMiwuNzFBMi40NCwyLjQ0LDAsMCwxLDEyLjcxLDIuNDRaIiBmaWxsPSIjMjMxZjIwIi8+PC9nPjxwYXRoIGQ9Ik02LjM2LDcuNzlhMS40MywxLjQzLDAsMCwxLTEtLjQyTDEuNDIsMy40NWExLjQ0LDEuNDQsMCwwLDEsMC0yYzAuNTYtLjU2LDkuMzEtMC41Niw5Ljg3LDBhMS40NCwxLjQ0LDAsMCwxLDAsMkw3LjM3LDcuMzdBMS40MywxLjQzLDAsMCwxLDYuMzYsNy43OVoiIGZpbGw9IiNmZmYiLz48L3N2Zz4=" transform="translate(72,4)"/></g></g><g data-id="EYxb5{{b[3`Lt8J,08U}" class="blocklyDraggable" style="display: block;" transform="translate(500, 56)"><path class="blocklyPath" stroke="#bf9197" fill="#ffc1c9" d=" m 20,0  h 108  h 20  l -20,40  V 40  h -108  l -20,-40  h 20 z&#10;"/><g class="blocklyEditableText" transform="translate(32,10)" style="cursor: default;"><text class="blocklyText blocklyDropdownText" dominant-baseline="central" text-anchor="start" x="0" y="10">訓練輸出</text><image style="display: none;"/><image height="12px" width="12px" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMi43MSIgaGVpZ2h0PSI4Ljc5IiB2aWV3Qm94PSIwIDAgMTIuNzEgOC43OSI+PHRpdGxlPmRyb3Bkb3duLWFycm93PC90aXRsZT48ZyBvcGFjaXR5PSIwLjEiPjxwYXRoIGQ9Ik0xMi43MSwyLjQ0QTIuNDEsMi40MSwwLDAsMSwxMiw0LjE2TDguMDgsOC4wOGEyLjQ1LDIuNDUsMCwwLDEtMy40NSwwTDAuNzIsNC4xNkEyLjQyLDIuNDIsMCwwLDEsMCwyLjQ0LDIuNDgsMi40OCwwLDAsMSwuNzEuNzFDMSwwLjQ3LDEuNDMsMCw2LjM2LDBTMTEuNzUsMC40NiwxMiwuNzFBMi40NCwyLjQ0LDAsMCwxLDEyLjcxLDIuNDRaIiBmaWxsPSIjMjMxZjIwIi8+PC9nPjxwYXRoIGQ9Ik02LjM2LDcuNzlhMS40MywxLjQzLDAsMCwxLTEtLjQyTDEuNDIsMy40NWExLjQ0LDEuNDQsMCwwLDEsMC0yYzAuNTYtLjU2LDkuMzEtMC41Niw5Ljg3LDBhMS40NCwxLjQ0LDAsMCwxLDAsMkw3LjM3LDcuMzdBMS40MywxLjQzLDAsMCwxLDYuMzYsNy43OVoiIGZpbGw9IiNmZmYiLz48L3N2Zz4=" transform="translate(72,4)"/></g></g><g data-id="my//Qc.6#~Chb:,h`?,," class="blocklyDraggable" style="display: block;" transform="translate(680, 56)"><path class="blocklyPath" stroke="#bf9197" fill="#ffc1c9" d=" m 20,0  h 108  h 20  l -20,40  V 40  h -108  l -20,-40  h 20 z&#10;"/><g class="blocklyEditableText" transform="translate(32,10)" style="cursor: default;"><text class="blocklyText blocklyDropdownText" dominant-baseline="central" text-anchor="start" x="0" y="10">測試輸出</text><image style="display: none;"/><image height="12px" width="12px" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMi43MSIgaGVpZ2h0PSI4Ljc5IiB2aWV3Qm94PSIwIDAgMTIuNzEgOC43OSI+PHRpdGxlPmRyb3Bkb3duLWFycm93PC90aXRsZT48ZyBvcGFjaXR5PSIwLjEiPjxwYXRoIGQ9Ik0xMi43MSwyLjQ0QTIuNDEsMi40MSwwLDAsMSwxMiw0LjE2TDguMDgsOC4wOGEyLjQ1LDIuNDUsMCwwLDEtMy40NSwwTDAuNzIsNC4xNkEyLjQyLDIuNDIsMCwwLDEsMCwyLjQ0LDIuNDgsMi40OCwwLDAsMSwuNzEuNzFDMSwwLjQ3LDEuNDMsMCw2LjM2LDBTMTEuNzUsMC40NiwxMiwuNzFBMi40NCwyLjQ0LDAsMCwxLDEyLjcxLDIuNDRaIiBmaWxsPSIjMjMxZjIwIi8+PC9nPjxwYXRoIGQ9Ik02LjM2LDcuNzlhMS40MywxLjQzLDAsMCwxLTEtLjQyTDEuNDIsMy40NWExLjQ0LDEuNDQsMCwwLDEsMC0yYzAuNTYtLjU2LDkuMzEtMC41Niw5Ljg3LDBhMS40NCwxLjQ0LDAsMCwxLDAsMkw3LjM3LDcuMzdBMS40MywxLjQzLDAsMCwxLDYuMzYsNy43OVoiIGZpbGw9IiNmZmYiLz48L3N2Zz4=" transform="translate(72,4)"/></g></g><g data-id="a,*w+v*K~`0nF|K+*4=/" class="blocklyDraggable" transform="translate(0, 104)"><path class="blocklyPath" stroke="#bf9197" fill="#ffc1c9" d=" m 0,0  m 0,4 a 4 4 0 0,1 4,-4  h 8  c 2,0  3,1  4,2  l 4,4  c 1,1  2,2  4,2  h 12  c 2,0  3,-1  4,-2  l 4,-4  c 1,-1  2,-2  4,-2  h 774.8079528808594 a 4 4 0 0,1 4,4  v 8  V 45  V 45 a 4 4 0 0,1 -4,4  h -774.8079528808594  c -2,0  -3,1  -4,2  l -4,4  c -1,1  -2,2  -4,2  h -12  c -2,0  -3,-1  -4,-2  l -4,-4  c -1,-1  -2,-2  -4,-2  h -8 a 4 4 0 0,1 -4,-4 z&#10;"/><g data-id="R~1]+,K~LduMrHG#(i3_" class="blocklyDraggable" style="display: block;" transform="translate(189, 4)"><path class="blocklyPath" stroke="#baa0ba" fill="#f8d5f8" d=" m 20.5,0  h 588.8079528808594  h 20.5  l -20.5,41  V 41  h -588.8079528808594  h -20.5  l 20.5,-41 z&#10;"/><g transform="translate(32,10.5)"><text class="blocklyText" dominant-baseline="central" x="0" y="10">建立</text></g><g class="blocklyEditableText" transform="translate(72,4)" style="cursor: default;"><rect rx="4" ry="4" x="0" y="0" height="33" width="115.69598388671875" class="blocklyFieldRect blocklyDropdownRect" stroke="#baa0ba" fill="transparent"/><text class="blocklyText blocklyDropdownText" dominant-baseline="central" text-anchor="start" x="8" y="16.5">k-最近鄰居</text><image style="display: none;"/><image height="12px" width="12px" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMi43MSIgaGVpZ2h0PSI4Ljc5IiB2aWV3Qm94PSIwIDAgMTIuNzEgOC43OSI+PHRpdGxlPmRyb3Bkb3duLWFycm93PC90aXRsZT48ZyBvcGFjaXR5PSIwLjEiPjxwYXRoIGQ9Ik0xMi43MSwyLjQ0QTIuNDEsMi40MSwwLDAsMSwxMiw0LjE2TDguMDgsOC4wOGEyLjQ1LDIuNDUsMCwwLDEtMy40NSwwTDAuNzIsNC4xNkEyLjQyLDIuNDIsMCwwLDEsMCwyLjQ0LDIuNDgsMi40OCwwLDAsMSwuNzEuNzFDMSwwLjQ3LDEuNDMsMCw2LjM2LDBTMTEuNzUsMC40NiwxMiwuNzFBMi40NCwyLjQ0LDAsMCwxLDEyLjcxLDIuNDRaIiBmaWxsPSIjMjMxZjIwIi8+PC9nPjxwYXRoIGQ9Ik02LjM2LDcuNzlhMS40MywxLjQzLDAsMCwxLTEtLjQyTDEuNDIsMy40NWExLjQ0LDEuNDQsMCwwLDEsMC0yYzAuNTYtLjU2LDkuMzEtMC41Niw5Ljg3LDBhMS40NCwxLjQ0LDAsMCwxLDAsMkw3LjM3LDcuMzdBMS40MywxLjQzLDAsMCwxLDYuMzYsNy43OVoiIGZpbGw9IiNmZmYiLz48L3N2Zz4=" transform="translate(95.69598388671875,10.5)"/></g><g transform="translate(195.69598388671875,10.5)"><text class="blocklyText" dominant-baseline="central" x="0" y="10">分類模型</text></g><g transform="translate(267.69598388671875,10.5)"><text class="blocklyText" dominant-baseline="central" x="0" y="10"> k :</text></g><g class="blocklyEditableText" transform="translate(298.2239685058594,4)" style="cursor: text;"><rect rx="4" ry="4" x="0" y="0" height="33" width="24.89599609375" class="blocklyFieldRect" stroke="#baa0ba" style="display: block;"/><text class="blocklyText" dominant-baseline="central" x="8" y="16.5">5</text></g><g transform="translate(331.1199645996094,10.5)"><text class="blocklyText" dominant-baseline="central" x="0" y="10"> 權重 :</text></g><g class="blocklyEditableText" transform="translate(384.4639587402344,4)" style="cursor: default;"><rect rx="4" ry="4" x="0" y="0" height="33" width="68" class="blocklyFieldRect blocklyDropdownRect" stroke="#baa0ba" fill="transparent"/><text class="blocklyText blocklyDropdownText" dominant-baseline="central" text-anchor="start" x="8" y="16.5">平均</text><image style="display: none;"/><image height="12px" width="12px" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMi43MSIgaGVpZ2h0PSI4Ljc5IiB2aWV3Qm94PSIwIDAgMTIuNzEgOC43OSI+PHRpdGxlPmRyb3Bkb3duLWFycm93PC90aXRsZT48ZyBvcGFjaXR5PSIwLjEiPjxwYXRoIGQ9Ik0xMi43MSwyLjQ0QTIuNDEsMi40MSwwLDAsMSwxMiw0LjE2TDguMDgsOC4wOGEyLjQ1LDIuNDUsMCwwLDEtMy40NSwwTDAuNzIsNC4xNkEyLjQyLDIuNDIsMCwwLDEsMCwyLjQ0LDIuNDgsMi40OCwwLDAsMSwuNzEuNzFDMSwwLjQ3LDEuNDMsMCw2LjM2LDBTMTEuNzUsMC40NiwxMiwuNzFBMi40NCwyLjQ0LDAsMCwxLDEyLjcxLDIuNDRaIiBmaWxsPSIjMjMxZjIwIi8+PC9nPjxwYXRoIGQ9Ik02LjM2LDcuNzlhMS40MywxLjQzLDAsMCwxLTEtLjQyTDEuNDIsMy40NWExLjQ0LDEuNDQsMCwwLDEsMC0yYzAuNTYtLjU2LDkuMzEtMC41Niw5Ljg3LDBhMS40NCwxLjQ0LDAsMCwxLDAsMkw3LjM3LDcuMzdBMS40MywxLjQzLDAsMCwxLDYuMzYsNy43OVoiIGZpbGw9IiNmZmYiLz48L3N2Zz4=" transform="translate(48,10.5)"/></g><g transform="translate(460.4639587402344,10.5)"><text class="blocklyText" dominant-baseline="central" x="0" y="10"> 演算法 :</text></g><g class="blocklyEditableText" transform="translate(529.8079528808594,4)" style="cursor: default;"><rect rx="4" ry="4" x="0" y="0" height="33" width="68" class="blocklyFieldRect blocklyDropdownRect" stroke="#baa0ba" fill="transparent"/><text class="blocklyText blocklyDropdownText" dominant-baseline="central" text-anchor="start" x="8" y="16.5">自動</text><image style="display: none;"/><image height="12px" width="12px" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMi43MSIgaGVpZ2h0PSI4Ljc5IiB2aWV3Qm94PSIwIDAgMTIuNzEgOC43OSI+PHRpdGxlPmRyb3Bkb3duLWFycm93PC90aXRsZT48ZyBvcGFjaXR5PSIwLjEiPjxwYXRoIGQ9Ik0xMi43MSwyLjQ0QTIuNDEsMi40MSwwLDAsMSwxMiw0LjE2TDguMDgsOC4wOGEyLjQ1LDIuNDUsMCwwLDEtMy40NSwwTDAuNzIsNC4xNkEyLjQyLDIuNDIsMCwwLDEsMCwyLjQ0LDIuNDgsMi40OCwwLDAsMSwuNzEuNzFDMSwwLjQ3LDEuNDMsMCw2LjM2LDBTMTEuNzUsMC40NiwxMiwuNzFBMi40NCwyLjQ0LDAsMCwxLDEyLjcxLDIuNDRaIiBmaWxsPSIjMjMxZjIwIi8+PC9nPjxwYXRoIGQ9Ik02LjM2LDcuNzlhMS40MywxLjQzLDAsMCwxLTEtLjQyTDEuNDIsMy40NWExLjQ0LDEuNDQsMCwwLDEsMC0yYzAuNTYtLjU2LDkuMzEtMC41Niw5Ljg3LDBhMS40NCwxLjQ0LDAsMCwxLDAsMkw3LjM3LDcuMzdBMS40MywxLjQzLDAsMCwxLDYuMzYsNy43OVoiIGZpbGw9IiNmZmYiLz48L3N2Zz4=" transform="translate(48,10.5)"/></g></g><g data-id="AXT#dQd=FVEorAgW[5_j" class="blocklyDraggable" transform="translate(0, 49)"><path class="blocklyPath" stroke="#baa0ba" fill="#f8d5f8" d=" m 0,0  m 0,4 a 4 4 0 0,1 4,-4  h 8  c 2,0  3,1  4,2  l 4,4  c 1,1  2,2  4,2  h 12  c 2,0  3,-1  4,-2  l 4,-4  c 1,-1  2,-2  4,-2  h 665 a 4 4 0 0,1 4,4  v 8  V 44  V 44 a 4 4 0 0,1 -4,4  h -665  c -2,0  -3,1  -4,2  l -4,4  c -1,1  -2,2  -4,2  h -12  c -2,0  -3,-1  -4,-2  l -4,-4  c -1,-1  -2,-2  -4,-2  h -8 a 4 4 0 0,1 -4,-4 z&#10;"/><g data-id="dIgr1h=BAkws9R==7{}`" class="blocklyDraggable" style="display: block;" transform="translate(153, 4)"><path class="blocklyPath" stroke="#bf9197" fill="#ffc1c9" d=" m 20,0  h 108  h 20  l -20,40  V 40  h -108  l -20,-40  h 20 z&#10;"/><g class="blocklyEditableText" transform="translate(32,10)" style="cursor: default;"><text class="blocklyText blocklyDropdownText" dominant-baseline="central" text-anchor="start" x="0" y="10">訓練輸入</text><image style="display: none;"/><image height="12px" width="12px" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMi43MSIgaGVpZ2h0PSI4Ljc5IiB2aWV3Qm94PSIwIDAgMTIuNzEgOC43OSI+PHRpdGxlPmRyb3Bkb3duLWFycm93PC90aXRsZT48ZyBvcGFjaXR5PSIwLjEiPjxwYXRoIGQ9Ik0xMi43MSwyLjQ0QTIuNDEsMi40MSwwLDAsMSwxMiw0LjE2TDguMDgsOC4wOGEyLjQ1LDIuNDUsMCwwLDEtMy40NSwwTDAuNzIsNC4xNkEyLjQyLDIuNDIsMCwwLDEsMCwyLjQ0LDIuNDgsMi40OCwwLDAsMSwuNzEuNzFDMSwwLjQ3LDEuNDMsMCw2LjM2LDBTMTEuNzUsMC40NiwxMiwuNzFBMi40NCwyLjQ0LDAsMCwxLDEyLjcxLDIuNDRaIiBmaWxsPSIjMjMxZjIwIi8+PC9nPjxwYXRoIGQ9Ik02LjM2LDcuNzlhMS40MywxLjQzLDAsMCwxLTEtLjQyTDEuNDIsMy40NWExLjQ0LDEuNDQsMCwwLDEsMC0yYzAuNTYtLjU2LDkuMzEtMC41Niw5Ljg3LDBhMS40NCwxLjQ0LDAsMCwxLDAsMkw3LjM3LDcuMzdBMS40MywxLjQzLDAsMCwxLDYuMzYsNy43OVoiIGZpbGw9IiNmZmYiLz48L3N2Zz4=" transform="translate(72,4)"/></g></g><g data-id="H+H$pwSv1c#A9SJ*EPny" class="blocklyDraggable" style="display: block;" transform="translate(397, 4)"><path class="blocklyPath" stroke="#bf9197" fill="#ffc1c9" d=" m 20,0  h 108  h 20  l -20,40  V 40  h -108  l -20,-40  h 20 z&#10;"/><g class="blocklyEditableText" transform="translate(32,10)" style="cursor: default;"><text class="blocklyText blocklyDropdownText" dominant-baseline="central" text-anchor="start" x="0" y="10">訓練輸出</text><image style="display: none;"/><image height="12px" width="12px" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMi43MSIgaGVpZ2h0PSI4Ljc5IiB2aWV3Qm94PSIwIDAgMTIuNzEgOC43OSI+PHRpdGxlPmRyb3Bkb3duLWFycm93PC90aXRsZT48ZyBvcGFjaXR5PSIwLjEiPjxwYXRoIGQ9Ik0xMi43MSwyLjQ0QTIuNDEsMi40MSwwLDAsMSwxMiw0LjE2TDguMDgsOC4wOGEyLjQ1LDIuNDUsMCwwLDEtMy40NSwwTDAuNzIsNC4xNkEyLjQyLDIuNDIsMCwwLDEsMCwyLjQ0LDIuNDgsMi40OCwwLDAsMSwuNzEuNzFDMSwwLjQ3LDEuNDMsMCw2LjM2LDBTMTEuNzUsMC40NiwxMiwuNzFBMi40NCwyLjQ0LDAsMCwxLDEyLjcxLDIuNDRaIiBmaWxsPSIjMjMxZjIwIi8+PC9nPjxwYXRoIGQ9Ik02LjM2LDcuNzlhMS40MywxLjQzLDAsMCwxLTEtLjQyTDEuNDIsMy40NWExLjQ0LDEuNDQsMCwwLDEsMC0yYzAuNTYtLjU2LDkuMzEtMC41Niw5Ljg3LDBhMS40NCwxLjQ0LDAsMCwxLDAsMkw3LjM3LDcuMzdBMS40MywxLjQzLDAsMCwxLDYuMzYsNy43OVoiIGZpbGw9IiNmZmYiLz48L3N2Zz4=" transform="translate(72,4)"/></g></g><g data-id="9xLm*HP#}pSh@QltJ^/I" class="blocklyDraggable" style="display: block;" transform="translate(593, 4)"><path class="blocklyPath" stroke="#bf9197" fill="#ffc1c9" d=" m 20,0  h 76  h 20  l -20,40  V 40  h -76  h -20  l 20,-40 z&#10;"/><g class="blocklyEditableText" transform="translate(32,10)" style="cursor: default;"><text class="blocklyText blocklyDropdownText" dominant-baseline="central" text-anchor="start" x="0" y="10">模型</text><image style="display: none;"/><image height="12px" width="12px" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMi43MSIgaGVpZ2h0PSI4Ljc5IiB2aWV3Qm94PSIwIDAgMTIuNzEgOC43OSI+PHRpdGxlPmRyb3Bkb3duLWFycm93PC90aXRsZT48ZyBvcGFjaXR5PSIwLjEiPjxwYXRoIGQ9Ik0xMi43MSwyLjQ0QTIuNDEsMi40MSwwLDAsMSwxMiw0LjE2TDguMDgsOC4wOGEyLjQ1LDIuNDUsMCwwLDEtMy40NSwwTDAuNzIsNC4xNkEyLjQyLDIuNDIsMCwwLDEsMCwyLjQ0LDIuNDgsMi40OCwwLDAsMSwuNzEuNzFDMSwwLjQ3LDEuNDMsMCw2LjM2LDBTMTEuNzUsMC40NiwxMiwuNzFBMi40NCwyLjQ0LDAsMCwxLDEyLjcxLDIuNDRaIiBmaWxsPSIjMjMxZjIwIi8+PC9nPjxwYXRoIGQ9Ik02LjM2LDcuNzlhMS40MywxLjQzLDAsMCwxLTEtLjQyTDEuNDIsMy40NWExLjQ0LDEuNDQsMCwwLDEsMC0yYzAuNTYtLjU2LDkuMzEtMC41Niw5Ljg3LDBhMS40NCwxLjQ0LDAsMCwxLDAsMkw3LjM3LDcuMzdBMS40MywxLjQzLDAsMCwxLDYuMzYsNy43OVoiIGZpbGw9IiNmZmYiLz48L3N2Zz4=" transform="translate(40,4)"/></g></g><g data-id="9pr:mo2FopXUujtL(]Er" class="blocklyDraggable" transform="translate(0, 48)"><path class="blocklyPath" stroke="#b09d9d" fill="#ebd1d1" d=" m 0,0  m 0,4 a 4 4 0 0,1 4,-4  h 8  c 2,0  3,1  4,2  l 4,4  c 1,1  2,2  4,2  h 12  c 2,0  3,-1  4,-2  l 4,-4  c 1,-1  2,-2  4,-2  h 451.0319366455078 a 4 4 0 0,1 4,4  v 8  V 45  V 45 a 4 4 0 0,1 -4,4  h -451.0319366455078  c -2,0  -3,1  -4,2  l -4,4  c -1,1  -2,2  -4,2  h -12  c -2,0  -3,-1  -4,-2  l -4,-4  c -1,-1  -2,-2  -4,-2  h -8 a 4 4 0 0,1 -4,-4 z&#10;"/><g data-id="GeU%[fk$WRHymp.2khi/" class="blocklyDraggable" style="display: block;" transform="translate(57, 4.5)"><path class="blocklyPath" stroke="#bf9197" fill="#ffc1c9" d=" m 20,0  h 76  h 10  q 6.666666666666667,10  0,20  q -6.666666666666667,10  0,20  h -10  V 40  h -76  h -10  q -6.666666666666667,-10  0,-20  q 6.666666666666667,-10  0,-20  h 10 z&#10;"/><g class="blocklyEditableText" transform="translate(32,10)" style="cursor: default;"><text class="blocklyText blocklyDropdownText" dominant-baseline="central" text-anchor="start" x="0" y="10">模型</text><image style="display: none;"/><image height="12px" width="12px" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMi43MSIgaGVpZ2h0PSI4Ljc5IiB2aWV3Qm94PSIwIDAgMTIuNzEgOC43OSI+PHRpdGxlPmRyb3Bkb3duLWFycm93PC90aXRsZT48ZyBvcGFjaXR5PSIwLjEiPjxwYXRoIGQ9Ik0xMi43MSwyLjQ0QTIuNDEsMi40MSwwLDAsMSwxMiw0LjE2TDguMDgsOC4wOGEyLjQ1LDIuNDUsMCwwLDEtMy40NSwwTDAuNzIsNC4xNkEyLjQyLDIuNDIsMCwwLDEsMCwyLjQ0LDIuNDgsMi40OCwwLDAsMSwuNzEuNzFDMSwwLjQ3LDEuNDMsMCw2LjM2LDBTMTEuNzUsMC40NiwxMiwuNzFBMi40NCwyLjQ0LDAsMCwxLDEyLjcxLDIuNDRaIiBmaWxsPSIjMjMxZjIwIi8+PC9nPjxwYXRoIGQ9Ik02LjM2LDcuNzlhMS40MywxLjQzLDAsMCwxLTEtLjQyTDEuNDIsMy40NWExLjQ0LDEuNDQsMCwwLDEsMC0yYzAuNTYtLjU2LDkuMzEtMC41Niw5Ljg3LDBhMS40NCwxLjQ0LDAsMCwxLDAsMkw3LjM3LDcuMzdBMS40MywxLjQzLDAsMCwxLDYuMzYsNy43OVoiIGZpbGw9IiNmZmYiLz48L3N2Zz4=" transform="translate(40,4)"/></g></g><g data-id=")n#.i:^n8(U+=Z6M*cU-" class="blocklyDraggable" style="display: block;" transform="translate(237, 4)"><path class="blocklyPath" stroke="#92b4be" fill="#c2f0fd" d=" m 8,0  h 184 a 4 4 0 0,1 4,4  v 33 a 4 4 0 0,1 -4,4  V 41  h -184 a 4 4 0 0,1 -4,-4  v -9  c 0,-10  -8,8  -8,-7.5  s 8,2.5  8,-7.5  v -9 a 4 4 0 0,1 4,-4 z&#10;"/><g transform="translate(12,14)"><image height="12px" width="12px" alt="“" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAKCAQAAAAqJXdxAAAAn0lEQVQI1z3OMa5BURSF4f/cQhAKjUQhuQmFNwGJEUi0RKN5rU7FHKhpjEH3TEMtkdBSCY1EIv8r7nFX9e29V7EBAOvu7RPjwmWGH/VuF8CyN9/OAdvqIXYLvtRaNjx9mMTDyo+NjAN1HNcl9ZQ5oQMM3dgDUqDo1l8DzvwmtZN7mnD+PkmLa+4mhrxVA9fRowBWmVBhFy5gYEjKMfz9AylsaRRgGzvZAAAAAElFTkSuQmCC"/></g><g class="blocklyEditableText" transform="translate(32,4)" style="cursor: text;"><rect rx="4" ry="4" x="0" y="0" height="33" width="136" class="blocklyFieldRect" stroke="#92b4be" style="display: block;"/><text class="blocklyText" dominant-baseline="central" x="8" y="16.5">模型_訓練產生的</text></g><g transform="translate(176,14)"><image height="12px" width="12px" alt="”" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAKCAQAAAAqJXdxAAAAqUlEQVQI1z3KvUpCcRiA8ef9E4JNHhI0aFEacm1o0BsI0Slx8wa8gLauoDnoBhq7DcfWhggONDmJJgqCPA7neJ7p934EOOKOnM8Q7PDElo/4x4lFb2DmuUjcUzS3URnGib9qaPNbuXvBO3sGPHJDRG6fGVdMSeWDP2q99FQdFrz26Gu5Tq7dFMzUvbXy8KXeAj57cOklgA+u1B5AoslLtGIHQMaCVnwDnADZIFIrXsoXrgAAAABJRU5ErkJggg=="/></g></g><g data-id="P*E.*h=HAu#n3D_S$}^H" class="blocklyDraggable" transform="translate(0, 49)"><path class="blocklyPath" stroke="#bf9197" fill="#ffc1c9" d=" m 0,0  m 0,4 a 4 4 0 0,1 4,-4  h 8  c 2,0  3,1  4,2  l 4,4  c 1,1  2,2  4,2  h 12  c 2,0  3,-1  4,-2  l 4,-4  c 1,-1  2,-2  4,-2  h 688 a 4 4 0 0,1 4,4  v 8  V 52  V 52 a 4 4 0 0,1 -4,4  h -688  c -2,0  -3,1  -4,2  l -4,4  c -1,1  -2,2  -4,2  h -12  c -2,0  -3,-1  -4,-2  l -4,-4  c -1,-1  -2,-2  -4,-2  h -8 a 4 4 0 0,1 -4,-4 z&#10;"/><g data-id=";S#DvH+u:9O-**kojIu=" class="blocklyDraggable" style="display: block;" transform="translate(228, 4)"><path class="blocklyPath" stroke="#baa0ba" fill="#f8d5f8" d=" m 24,0  h 456  h 24  l -24,48  V 48  h -456  l -24,-48  h 24 z&#10;"/><g data-id="W6sps7ad=s9@=?Qjo}$/" class="blocklyDraggable" style="display: block;" transform="translate(72, 4)"><path class="blocklyPath" stroke="#bf9197" fill="#ffc1c9" d=" m 20,0  h 76  h 20  l -20,40  V 40  h -76  h -20  l 20,-40 z&#10;"/><g class="blocklyEditableText" transform="translate(32,10)" style="cursor: default;"><text class="blocklyText blocklyDropdownText" dominant-baseline="central" text-anchor="start" x="0" y="10">模型</text><image style="display: none;"/><image height="12px" width="12px" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMi43MSIgaGVpZ2h0PSI4Ljc5IiB2aWV3Qm94PSIwIDAgMTIuNzEgOC43OSI+PHRpdGxlPmRyb3Bkb3duLWFycm93PC90aXRsZT48ZyBvcGFjaXR5PSIwLjEiPjxwYXRoIGQ9Ik0xMi43MSwyLjQ0QTIuNDEsMi40MSwwLDAsMSwxMiw0LjE2TDguMDgsOC4wOGEyLjQ1LDIuNDUsMCwwLDEtMy40NSwwTDAuNzIsNC4xNkEyLjQyLDIuNDIsMCwwLDEsMCwyLjQ0LDIuNDgsMi40OCwwLDAsMSwuNzEuNzFDMSwwLjQ3LDEuNDMsMCw2LjM2LDBTMTEuNzUsMC40NiwxMiwuNzFBMi40NCwyLjQ0LDAsMCwxLDEyLjcxLDIuNDRaIiBmaWxsPSIjMjMxZjIwIi8+PC9nPjxwYXRoIGQ9Ik02LjM2LDcuNzlhMS40MywxLjQzLDAsMCwxLTEtLjQyTDEuNDIsMy40NWExLjQ0LDEuNDQsMCwwLDEsMC0yYzAuNTYtLjU2LDkuMzEtMC41Niw5Ljg3LDBhMS40NCwxLjQ0LDAsMCwxLDAsMkw3LjM3LDcuMzdBMS40MywxLjQzLDAsMCwxLDYuMzYsNy43OVoiIGZpbGw9IiNmZmYiLz48L3N2Zz4=" transform="translate(40,4)"/></g></g><g data-id="6I@#(Eoxshf%A$0xW#l`" class="blocklyDraggable" style="display: block;" transform="translate(236, 4)"><path class="blocklyPath" stroke="#bf9197" fill="#ffc1c9" d=" m 20,0  h 108  h 20  l -20,40  V 40  h -108  l -20,-40  h 20 z&#10;"/><g class="blocklyEditableText" transform="translate(32,10)" style="cursor: default;"><text class="blocklyText blocklyDropdownText" dominant-baseline="central" text-anchor="start" x="0" y="10">訓練輸入</text><image style="display: none;"/><image height="12px" width="12px" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMi43MSIgaGVpZ2h0PSI4Ljc5IiB2aWV3Qm94PSIwIDAgMTIuNzEgOC43OSI+PHRpdGxlPmRyb3Bkb3duLWFycm93PC90aXRsZT48ZyBvcGFjaXR5PSIwLjEiPjxwYXRoIGQ9Ik0xMi43MSwyLjQ0QTIuNDEsMi40MSwwLDAsMSwxMiw0LjE2TDguMDgsOC4wOGEyLjQ1LDIuNDUsMCwwLDEtMy40NSwwTDAuNzIsNC4xNkEyLjQyLDIuNDIsMCwwLDEsMCwyLjQ0LDIuNDgsMi40OCwwLDAsMSwuNzEuNzFDMSwwLjQ3LDEuNDMsMCw2LjM2LDBTMTEuNzUsMC40NiwxMiwuNzFBMi40NCwyLjQ0LDAsMCwxLDEyLjcxLDIuNDRaIiBmaWxsPSIjMjMxZjIwIi8+PC9nPjxwYXRoIGQ9Ik02LjM2LDcuNzlhMS40MywxLjQzLDAsMCwxLTEtLjQyTDEuNDIsMy40NWExLjQ0LDEuNDQsMCwwLDEsMC0yYzAuNTYtLjU2LDkuMzEtMC41Niw5Ljg3LDBhMS40NCwxLjQ0LDAsMCwxLDAsMkw3LjM3LDcuMzdBMS40MywxLjQzLDAsMCwxLDYuMzYsNy43OVoiIGZpbGw9IiNmZmYiLz48L3N2Zz4=" transform="translate(72,4)"/></g></g><g transform="translate(32,14)"><text class="blocklyText" dominant-baseline="central" x="0" y="10">使用</text></g><g transform="translate(196,14)"><text class="blocklyText" dominant-baseline="central" x="0" y="10">推論</text></g><g transform="translate(392,14)"><text class="blocklyText" dominant-baseline="central" x="0" y="10">的對應標籤</text></g></g><g data-id="ey+qtW4ovfF}puE1/9Ri" class="blocklyDraggable" transform="translate(0, 56)"><path class="blocklyPath" stroke="#92b4be" fill="#c2f0fd" d=" m 0,0  m 0,4 a 4 4 0 0,1 4,-4  h 8  c 2,0  3,1  4,2  l 4,4  c 1,1  2,2  4,2  h 12  c 2,0  3,-1  4,-2  l 4,-4  c 1,-1  2,-2  4,-2  h 908 a 4 4 0 0,1 4,4  v 8  V 109  V 109 a 4 4 0 0,1 -4,4  h -908  c -2,0  -3,1  -4,2  l -4,4  c -1,1  -2,2  -4,2  h -12  c -2,0  -3,-1  -4,-2  l -4,-4  c -1,-1  -2,-2  -4,-2  h -8 a 4 4 0 0,1 -4,-4 z&#10;"/><g data-id="f`-$|$|E6?^8n{h#7!9V" class="blocklyDraggable" style="display: block;" transform="translate(160, 4)"><path class="blocklyPath" stroke="#92b4be" fill="#c2f0fd" d=" m 8,0  h 776 a 4 4 0 0,1 4,4  v 97 a 4 4 0 0,1 -4,4  V 105  h -776 a 4 4 0 0,1 -4,-4  v -41  c 0,-10  -8,8  -8,-7.5  s 8,2.5  8,-7.5  v -41 a 4 4 0 0,1 4,-4 z&#10;"/><g data-id="d=L``;WAzbnbFo%$12zH" class="blocklyDraggable" style="display: block;" transform="translate(572.9280242919922, 4)"><path class="blocklyPath" stroke="#92b4be" fill="#c2f0fd" d=" m 8,0  h 195.0719757080078 a 4 4 0 0,1 4,4  v 33 a 4 4 0 0,1 -4,4  V 41  h -195.0719757080078 a 4 4 0 0,1 -4,-4  v -9  c 0,-10  -8,8  -8,-7.5  s 8,2.5  8,-7.5  v -9 a 4 4 0 0,1 4,-4 z&#10;"/><g transform="translate(12,14)"><image height="12px" width="12px" alt="“" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAKCAQAAAAqJXdxAAAAn0lEQVQI1z3OMa5BURSF4f/cQhAKjUQhuQmFNwGJEUi0RKN5rU7FHKhpjEH3TEMtkdBSCY1EIv8r7nFX9e29V7EBAOvu7RPjwmWGH/VuF8CyN9/OAdvqIXYLvtRaNjx9mMTDyo+NjAN1HNcl9ZQ5oQMM3dgDUqDo1l8DzvwmtZN7mnD+PkmLa+4mhrxVA9fRowBWmVBhFy5gYEjKMfz9AylsaRRgGzvZAAAAAElFTkSuQmCC"/></g><g class="blocklyEditableText" transform="translate(32,4)" style="cursor: text;"><rect rx="4" ry="4" x="0" y="0" height="33" width="147.0719757080078" class="blocklyFieldRect" stroke="#92b4be" style="display: block;"/><text class="blocklyText" dominant-baseline="central" x="8" y="16.5">訓練結果(準確率)=</text></g><g transform="translate(187.0719757080078,14)"><image height="12px" width="12px" alt="”" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAKCAQAAAAqJXdxAAAAqUlEQVQI1z3KvUpCcRiA8ef9E4JNHhI0aFEacm1o0BsI0Slx8wa8gLauoDnoBhq7DcfWhggONDmJJgqCPA7neJ7p934EOOKOnM8Q7PDElo/4x4lFb2DmuUjcUzS3URnGib9qaPNbuXvBO3sGPHJDRG6fGVdMSeWDP2q99FQdFrz26Gu5Tq7dFMzUvbXy8KXeAj57cOklgA+u1B5AoslLtGIHQMaCVnwDnADZIFIrXsoXrgAAAABJRU5ErkJggg=="/></g></g><g data-id="NQj.N/T5hZWC+`z0v/w+" class="blocklyDraggable" style="display: block;" transform="translate(8, 53)"><path class="blocklyPath" stroke="#baa0ba" fill="#f8d5f8" d=" m 24,0  h 728  h 12  q 8,12  0,24  q -8,12  0,24  h -12  V 48  h -728  h -12  q -8,-12  0,-24  q 8,-12  0,-24  h 12 z&#10;"/><g data-id="}fm3tpgNr~c_mCHXrDya" class="blocklyDraggable" style="display: block;" transform="translate(152, 4)"><path class="blocklyPath" stroke="#bf9197" fill="#ffc1c9" d=" m 20,0  h 108  h 20  l -20,40  V 40  h -108  l -20,-40  h 20 z&#10;"/><g class="blocklyEditableText" transform="translate(32,10)" style="cursor: default;"><text class="blocklyText blocklyDropdownText" dominant-baseline="central" text-anchor="start" x="0" y="10">訓練輸出</text><image style="display: none;"/><image height="12px" width="12px" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMi43MSIgaGVpZ2h0PSI4Ljc5IiB2aWV3Qm94PSIwIDAgMTIuNzEgOC43OSI+PHRpdGxlPmRyb3Bkb3duLWFycm93PC90aXRsZT48ZyBvcGFjaXR5PSIwLjEiPjxwYXRoIGQ9Ik0xMi43MSwyLjQ0QTIuNDEsMi40MSwwLDAsMSwxMiw0LjE2TDguMDgsOC4wOGEyLjQ1LDIuNDUsMCwwLDEtMy40NSwwTDAuNzIsNC4xNkEyLjQyLDIuNDIsMCwwLDEsMCwyLjQ0LDIuNDgsMi40OCwwLDAsMSwuNzEuNzFDMSwwLjQ3LDEuNDMsMCw2LjM2LDBTMTEuNzUsMC40NiwxMiwuNzFBMi40NCwyLjQ0LDAsMCwxLDEyLjcxLDIuNDRaIiBmaWxsPSIjMjMxZjIwIi8+PC9nPjxwYXRoIGQ9Ik02LjM2LDcuNzlhMS40MywxLjQzLDAsMCwxLTEtLjQyTDEuNDIsMy40NWExLjQ0LDEuNDQsMCwwLDEsMC0yYzAuNTYtLjU2LDkuMzEtMC41Niw5Ljg3LDBhMS40NCwxLjQ0LDAsMCwxLDAsMkw3LjM3LDcuMzdBMS40MywxLjQzLDAsMCwxLDYuMzYsNy43OVoiIGZpbGw9IiNmZmYiLz48L3N2Zz4=" transform="translate(72,4)"/></g></g><g data-id="w#,M)4.~faf*e2|_c~/y" class="blocklyDraggable" style="display: block;" transform="translate(396, 4)"><path class="blocklyPath" stroke="#bf9197" fill="#ffc1c9" d=" m 20,0  h 140  h 20  l -20,40  V 40  h -140  l -20,-40  h 20 z&#10;"/><g class="blocklyEditableText" transform="translate(32,10)" style="cursor: default;"><text class="blocklyText blocklyDropdownText" dominant-baseline="central" text-anchor="start" x="0" y="10">訓練預測輸出</text><image style="display: none;"/><image height="12px" width="12px" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMi43MSIgaGVpZ2h0PSI4Ljc5IiB2aWV3Qm94PSIwIDAgMTIuNzEgOC43OSI+PHRpdGxlPmRyb3Bkb3duLWFycm93PC90aXRsZT48ZyBvcGFjaXR5PSIwLjEiPjxwYXRoIGQ9Ik0xMi43MSwyLjQ0QTIuNDEsMi40MSwwLDAsMSwxMiw0LjE2TDguMDgsOC4wOGEyLjQ1LDIuNDUsMCwwLDEtMy40NSwwTDAuNzIsNC4xNkEyLjQyLDIuNDIsMCwwLDEsMCwyLjQ0LDIuNDgsMi40OCwwLDAsMSwuNzEuNzFDMSwwLjQ3LDEuNDMsMCw2LjM2LDBTMTEuNzUsMC40NiwxMiwuNzFBMi40NCwyLjQ0LDAsMCwxLDEyLjcxLDIuNDRaIiBmaWxsPSIjMjMxZjIwIi8+PC9nPjxwYXRoIGQ9Ik02LjM2LDcuNzlhMS40MywxLjQzLDAsMCwxLTEtLjQyTDEuNDIsMy40NWExLjQ0LDEuNDQsMCwwLDEsMC0yYzAuNTYtLjU2LDkuMzEtMC41Niw5Ljg3LDBhMS40NCwxLjQ0LDAsMCwxLDAsMkw3LjM3LDcuMzdBMS40MywxLjQzLDAsMCwxLDYuMzYsNy43OVoiIGZpbGw9IiNmZmYiLz48L3N2Zz4=" transform="translate(104,4)"/></g></g><g transform="translate(32,14)"><text class="blocklyText" dominant-baseline="central" x="0" y="10">使用原始標籤：</text></g><g transform="translate(308,14)"><text class="blocklyText" dominant-baseline="central" x="0" y="10">推論標籤：</text></g><g transform="translate(584,14)"><text class="blocklyText" dominant-baseline="central" x="0" y="10">衡量分類結果的準確率</text></g></g><g transform="translate(500.9280242919922,14.5)"><text class="blocklyText" dominant-baseline="central" x="0" y="10">組合文字</text></g><g class="blocklyIconGroup blockly-icon-mutator" transform="translate(475.9280242919922, 16)"><rect class="blocklyIconShape" rx="4" ry="4" height="16" width="16"/><path class="blocklyIconSymbol" d="m4.203,7.296 0,1.368 -0.92,0.677 -0.11,0.41 0.9,1.559 0.41,0.11 1.043,-0.457 1.187,0.683 0.127,1.134 0.3,0.3 1.8,0 0.3,-0.299 0.127,-1.138 1.185,-0.682 1.046,0.458 0.409,-0.11 0.9,-1.559 -0.11,-0.41 -0.92,-0.677 0,-1.366 0.92,-0.677 0.11,-0.41 -0.9,-1.559 -0.409,-0.109 -1.046,0.458 -1.185,-0.682 -0.127,-1.138 -0.3,-0.299 -1.8,0 -0.3,0.3 -0.126,1.135 -1.187,0.682 -1.043,-0.457 -0.41,0.11 -0.899,1.559 0.108,0.409z"/><circle class="blocklyIconShape" r="2.7" cx="8" cy="8"/></g></g><g data-id="@=GdNpFb6:b,+:h%PJH[" class="blocklyDraggable" transform="translate(0, 113)"><path class="blocklyPath" stroke="#bf9197" fill="#ffc1c9" d=" m 0,0  m 0,4 a 4 4 0 0,1 4,-4  h 8  c 2,0  3,1  4,2  l 4,4  c 1,1  2,2  4,2  h 12  c 2,0  3,-1  4,-2  l 4,-4  c 1,-1  2,-2  4,-2  h 688 a 4 4 0 0,1 4,4  v 8  V 52  V 52 a 4 4 0 0,1 -4,4  h -688  c -2,0  -3,1  -4,2  l -4,4  c -1,1  -2,2  -4,2  h -12  c -2,0  -3,-1  -4,-2  l -4,-4  c -1,-1  -2,-2  -4,-2  h -8 a 4 4 0 0,1 -4,-4 z&#10;"/><g data-id="PH$k~Y4gLDPyAuP7R7bh" class="blocklyDraggable" style="display: block;" transform="translate(228, 4)"><path class="blocklyPath" stroke="#baa0ba" fill="#f8d5f8" d=" m 24,0  h 456  h 24  l -24,48  V 48  h -456  l -24,-48  h 24 z&#10;"/><g data-id="y*%-MjD;amu4qI{49L+f" class="blocklyDraggable" style="display: block;" transform="translate(72, 4)"><path class="blocklyPath" stroke="#bf9197" fill="#ffc1c9" d=" m 20,0  h 76  h 20  l -20,40  V 40  h -76  h -20  l 20,-40 z&#10;"/><g class="blocklyEditableText" transform="translate(32,10)" style="cursor: default;"><text class="blocklyText blocklyDropdownText" dominant-baseline="central" text-anchor="start" x="0" y="10">模型</text><image style="display: none;"/><image height="12px" width="12px" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMi43MSIgaGVpZ2h0PSI4Ljc5IiB2aWV3Qm94PSIwIDAgMTIuNzEgOC43OSI+PHRpdGxlPmRyb3Bkb3duLWFycm93PC90aXRsZT48ZyBvcGFjaXR5PSIwLjEiPjxwYXRoIGQ9Ik0xMi43MSwyLjQ0QTIuNDEsMi40MSwwLDAsMSwxMiw0LjE2TDguMDgsOC4wOGEyLjQ1LDIuNDUsMCwwLDEtMy40NSwwTDAuNzIsNC4xNkEyLjQyLDIuNDIsMCwwLDEsMCwyLjQ0LDIuNDgsMi40OCwwLDAsMSwuNzEuNzFDMSwwLjQ3LDEuNDMsMCw2LjM2LDBTMTEuNzUsMC40NiwxMiwuNzFBMi40NCwyLjQ0LDAsMCwxLDEyLjcxLDIuNDRaIiBmaWxsPSIjMjMxZjIwIi8+PC9nPjxwYXRoIGQ9Ik02LjM2LDcuNzlhMS40MywxLjQzLDAsMCwxLTEtLjQyTDEuNDIsMy40NWExLjQ0LDEuNDQsMCwwLDEsMC0yYzAuNTYtLjU2LDkuMzEtMC41Niw5Ljg3LDBhMS40NCwxLjQ0LDAsMCwxLDAsMkw3LjM3LDcuMzdBMS40MywxLjQzLDAsMCwxLDYuMzYsNy43OVoiIGZpbGw9IiNmZmYiLz48L3N2Zz4=" transform="translate(40,4)"/></g></g><g data-id="btq$rQ$@(##bo0PVB5IV" class="blocklyDraggable" style="display: block;" transform="translate(236, 4)"><path class="blocklyPath" stroke="#bf9197" fill="#ffc1c9" d=" m 20,0  h 108  h 20  l -20,40  V 40  h -108  l -20,-40  h 20 z&#10;"/><g class="blocklyEditableText" transform="translate(32,10)" style="cursor: default;"><text class="blocklyText blocklyDropdownText" dominant-baseline="central" text-anchor="start" x="0" y="10">測試輸入</text><image style="display: none;"/><image height="12px" width="12px" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMi43MSIgaGVpZ2h0PSI4Ljc5IiB2aWV3Qm94PSIwIDAgMTIuNzEgOC43OSI+PHRpdGxlPmRyb3Bkb3duLWFycm93PC90aXRsZT48ZyBvcGFjaXR5PSIwLjEiPjxwYXRoIGQ9Ik0xMi43MSwyLjQ0QTIuNDEsMi40MSwwLDAsMSwxMiw0LjE2TDguMDgsOC4wOGEyLjQ1LDIuNDUsMCwwLDEtMy40NSwwTDAuNzIsNC4xNkEyLjQyLDIuNDIsMCwwLDEsMCwyLjQ0LDIuNDgsMi40OCwwLDAsMSwuNzEuNzFDMSwwLjQ3LDEuNDMsMCw2LjM2LDBTMTEuNzUsMC40NiwxMiwuNzFBMi40NCwyLjQ0LDAsMCwxLDEyLjcxLDIuNDRaIiBmaWxsPSIjMjMxZjIwIi8+PC9nPjxwYXRoIGQ9Ik02LjM2LDcuNzlhMS40MywxLjQzLDAsMCwxLTEtLjQyTDEuNDIsMy40NWExLjQ0LDEuNDQsMCwwLDEsMC0yYzAuNTYtLjU2LDkuMzEtMC41Niw5Ljg3LDBhMS40NCwxLjQ0LDAsMCwxLDAsMkw3LjM3LDcuMzdBMS40MywxLjQzLDAsMCwxLDYuMzYsNy43OVoiIGZpbGw9IiNmZmYiLz48L3N2Zz4=" transform="translate(72,4)"/></g></g><g transform="translate(32,14)"><text class="blocklyText" dominant-baseline="central" x="0" y="10">使用</text></g><g transform="translate(196,14)"><text class="blocklyText" dominant-baseline="central" x="0" y="10">推論</text></g><g transform="translate(392,14)"><text class="blocklyText" dominant-baseline="central" x="0" y="10">的對應標籤</text></g></g><g data-id=",KT:o_hzH.~AqrcOQp;F" class="blocklyDraggable" transform="translate(0, 56)"><path class="blocklyPath" stroke="#92b4be" fill="#c2f0fd" d=" m 0,0  m 0,4 a 4 4 0 0,1 4,-4  h 8  c 2,0  3,1  4,2  l 4,4  c 1,1  2,2  4,2  h 12  c 2,0  3,-1  4,-2  l 4,-4  c 1,-1  2,-2  4,-2  h 908 a 4 4 0 0,1 4,4  v 8  V 109  V 109 a 4 4 0 0,1 -4,4  h -908  c -2,0  -3,1  -4,2  l -4,4  c -1,1  -2,2  -4,2  h -12  c -2,0  -3,-1  -4,-2  l -4,-4  c -1,-1  -2,-2  -4,-2  h -8 a 4 4 0 0,1 -4,-4 z&#10;"/><g data-id="Z:IE7lyR!|GWTUOjn?R|" class="blocklyDraggable" style="display: block;" transform="translate(160, 4)"><path class="blocklyPath" stroke="#92b4be" fill="#c2f0fd" d=" m 8,0  h 776 a 4 4 0 0,1 4,4  v 97 a 4 4 0 0,1 -4,4  V 105  h -776 a 4 4 0 0,1 -4,-4  v -41  c 0,-10  -8,8  -8,-7.5  s 8,2.5  8,-7.5  v -41 a 4 4 0 0,1 4,-4 z&#10;"/><g data-id="fXRste]V7eTNb6|hcMfl" class="blocklyDraggable" style="display: block;" transform="translate(572.9280242919922, 4)"><path class="blocklyPath" stroke="#92b4be" fill="#c2f0fd" d=" m 8,0  h 195.0719757080078 a 4 4 0 0,1 4,4  v 33 a 4 4 0 0,1 -4,4  V 41  h -195.0719757080078 a 4 4 0 0,1 -4,-4  v -9  c 0,-10  -8,8  -8,-7.5  s 8,2.5  8,-7.5  v -9 a 4 4 0 0,1 4,-4 z&#10;"/><g transform="translate(12,14)"><image height="12px" width="12px" alt="“" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAKCAQAAAAqJXdxAAAAn0lEQVQI1z3OMa5BURSF4f/cQhAKjUQhuQmFNwGJEUi0RKN5rU7FHKhpjEH3TEMtkdBSCY1EIv8r7nFX9e29V7EBAOvu7RPjwmWGH/VuF8CyN9/OAdvqIXYLvtRaNjx9mMTDyo+NjAN1HNcl9ZQ5oQMM3dgDUqDo1l8DzvwmtZN7mnD+PkmLa+4mhrxVA9fRowBWmVBhFy5gYEjKMfz9AylsaRRgGzvZAAAAAElFTkSuQmCC"/></g><g class="blocklyEditableText" transform="translate(32,4)" style="cursor: text;"><rect rx="4" ry="4" x="0" y="0" height="33" width="147.0719757080078" class="blocklyFieldRect" stroke="#92b4be" style="display: block;"/><text class="blocklyText" dominant-baseline="central" x="8" y="16.5">預測結果(準確率)=</text></g><g transform="translate(187.0719757080078,14)"><image height="12px" width="12px" alt="”" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAKCAQAAAAqJXdxAAAAqUlEQVQI1z3KvUpCcRiA8ef9E4JNHhI0aFEacm1o0BsI0Slx8wa8gLauoDnoBhq7DcfWhggONDmJJgqCPA7neJ7p934EOOKOnM8Q7PDElo/4x4lFb2DmuUjcUzS3URnGib9qaPNbuXvBO3sGPHJDRG6fGVdMSeWDP2q99FQdFrz26Gu5Tq7dFMzUvbXy8KXeAj57cOklgA+u1B5AoslLtGIHQMaCVnwDnADZIFIrXsoXrgAAAABJRU5ErkJggg=="/></g></g><g data-id="/IQ?w;#e)9jD]+0iaipK" class="blocklyDraggable" style="display: block;" transform="translate(8, 53)"><path class="blocklyPath" stroke="#baa0ba" fill="#f8d5f8" d=" m 24,0  h 728  h 12  q 8,12  0,24  q -8,12  0,24  h -12  V 48  h -728  h -12  q -8,-12  0,-24  q 8,-12  0,-24  h 12 z&#10;"/><g data-id="9CdGpT}b`K:+SjRB`R8E" class="blocklyDraggable" style="display: block;" transform="translate(152, 4)"><path class="blocklyPath" stroke="#bf9197" fill="#ffc1c9" d=" m 20,0  h 108  h 20  l -20,40  V 40  h -108  l -20,-40  h 20 z&#10;"/><g class="blocklyEditableText" transform="translate(32,10)" style="cursor: default;"><text class="blocklyText blocklyDropdownText" dominant-baseline="central" text-anchor="start" x="0" y="10">測試輸出</text><image style="display: none;"/><image height="12px" width="12px" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMi43MSIgaGVpZ2h0PSI4Ljc5IiB2aWV3Qm94PSIwIDAgMTIuNzEgOC43OSI+PHRpdGxlPmRyb3Bkb3duLWFycm93PC90aXRsZT48ZyBvcGFjaXR5PSIwLjEiPjxwYXRoIGQ9Ik0xMi43MSwyLjQ0QTIuNDEsMi40MSwwLDAsMSwxMiw0LjE2TDguMDgsOC4wOGEyLjQ1LDIuNDUsMCwwLDEtMy40NSwwTDAuNzIsNC4xNkEyLjQyLDIuNDIsMCwwLDEsMCwyLjQ0LDIuNDgsMi40OCwwLDAsMSwuNzEuNzFDMSwwLjQ3LDEuNDMsMCw2LjM2LDBTMTEuNzUsMC40NiwxMiwuNzFBMi40NCwyLjQ0LDAsMCwxLDEyLjcxLDIuNDRaIiBmaWxsPSIjMjMxZjIwIi8+PC9nPjxwYXRoIGQ9Ik02LjM2LDcuNzlhMS40MywxLjQzLDAsMCwxLTEtLjQyTDEuNDIsMy40NWExLjQ0LDEuNDQsMCwwLDEsMC0yYzAuNTYtLjU2LDkuMzEtMC41Niw5Ljg3LDBhMS40NCwxLjQ0LDAsMCwxLDAsMkw3LjM3LDcuMzdBMS40MywxLjQzLDAsMCwxLDYuMzYsNy43OVoiIGZpbGw9IiNmZmYiLz48L3N2Zz4=" transform="translate(72,4)"/></g></g><g data-id="++*KCCwIuoz^1275(w/s" class="blocklyDraggable" style="display: block;" transform="translate(396, 4)"><path class="blocklyPath" stroke="#bf9197" fill="#ffc1c9" d=" m 20,0  h 140  h 20  l -20,40  V 40  h -140  l -20,-40  h 20 z&#10;"/><g class="blocklyEditableText" transform="translate(32,10)" style="cursor: default;"><text class="blocklyText blocklyDropdownText" dominant-baseline="central" text-anchor="start" x="0" y="10">測試預測輸出</text><image style="display: none;"/><image height="12px" width="12px" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMi43MSIgaGVpZ2h0PSI4Ljc5IiB2aWV3Qm94PSIwIDAgMTIuNzEgOC43OSI+PHRpdGxlPmRyb3Bkb3duLWFycm93PC90aXRsZT48ZyBvcGFjaXR5PSIwLjEiPjxwYXRoIGQ9Ik0xMi43MSwyLjQ0QTIuNDEsMi40MSwwLDAsMSwxMiw0LjE2TDguMDgsOC4wOGEyLjQ1LDIuNDUsMCwwLDEtMy40NSwwTDAuNzIsNC4xNkEyLjQyLDIuNDIsMCwwLDEsMCwyLjQ0LDIuNDgsMi40OCwwLDAsMSwuNzEuNzFDMSwwLjQ3LDEuNDMsMCw2LjM2LDBTMTEuNzUsMC40NiwxMiwuNzFBMi40NCwyLjQ0LDAsMCwxLDEyLjcxLDIuNDRaIiBmaWxsPSIjMjMxZjIwIi8+PC9nPjxwYXRoIGQ9Ik02LjM2LDcuNzlhMS40MywxLjQzLDAsMCwxLTEtLjQyTDEuNDIsMy40NWExLjQ0LDEuNDQsMCwwLDEsMC0yYzAuNTYtLjU2LDkuMzEtMC41Niw5Ljg3LDBhMS40NCwxLjQ0LDAsMCwxLDAsMkw3LjM3LDcuMzdBMS40MywxLjQzLDAsMCwxLDYuMzYsNy43OVoiIGZpbGw9IiNmZmYiLz48L3N2Zz4=" transform="translate(104,4)"/></g></g><g transform="translate(32,14)"><text class="blocklyText" dominant-baseline="central" x="0" y="10">使用原始標籤：</text></g><g transform="translate(308,14)"><text class="blocklyText" dominant-baseline="central" x="0" y="10">推論標籤：</text></g><g transform="translate(584,14)"><text class="blocklyText" dominant-baseline="central" x="0" y="10">衡量分類結果的準確率</text></g></g><g transform="translate(500.9280242919922,14.5)"><text class="blocklyText" dominant-baseline="central" x="0" y="10">組合文字</text></g><g class="blocklyIconGroup blockly-icon-mutator" transform="translate(475.9280242919922, 16)"><rect class="blocklyIconShape" rx="4" ry="4" height="16" width="16"/><path class="blocklyIconSymbol" d="m4.203,7.296 0,1.368 -0.92,0.677 -0.11,0.41 0.9,1.559 0.41,0.11 1.043,-0.457 1.187,0.683 0.127,1.134 0.3,0.3 1.8,0 0.3,-0.299 0.127,-1.138 1.185,-0.682 1.046,0.458 0.409,-0.11 0.9,-1.559 -0.11,-0.41 -0.92,-0.677 0,-1.366 0.92,-0.677 0.11,-0.41 -0.9,-1.559 -0.409,-0.109 -1.046,0.458 -1.185,-0.682 -0.127,-1.138 -0.3,-0.299 -1.8,0 -0.3,0.3 -0.126,1.135 -1.187,0.682 -1.043,-0.457 -0.41,0.11 -0.899,1.559 0.108,0.409z"/><circle class="blocklyIconShape" r="2.7" cx="8" cy="8"/></g></g><g transform="translate(8,46.5)"><text class="blocklyText" dominant-baseline="central" x="0" y="10">在訊息視窗新增一行</text></g></g><g transform="translate(8,18)"><text class="blocklyText" dominant-baseline="central" x="0" y="10">變數</text></g><g class="blocklyEditableText" transform="translate(48,11.5)" style="cursor: default;"><rect rx="4" ry="4" x="0" y="0" height="33" width="132" class="blocklyFieldRect blocklyDropdownRect" stroke="#bf9197" fill="transparent"/><text class="blocklyText blocklyDropdownText" dominant-baseline="central" text-anchor="start" x="8" y="16.5">測試預測輸出</text><image style="display: none;"/><image height="12px" width="12px" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMi43MSIgaGVpZ2h0PSI4Ljc5IiB2aWV3Qm94PSIwIDAgMTIuNzEgOC43OSI+PHRpdGxlPmRyb3Bkb3duLWFycm93PC90aXRsZT48ZyBvcGFjaXR5PSIwLjEiPjxwYXRoIGQ9Ik0xMi43MSwyLjQ0QTIuNDEsMi40MSwwLDAsMSwxMiw0LjE2TDguMDgsOC4wOGEyLjQ1LDIuNDUsMCwwLDEtMy40NSwwTDAuNzIsNC4xNkEyLjQyLDIuNDIsMCwwLDEsMCwyLjQ0LDIuNDgsMi40OCwwLDAsMSwuNzEuNzFDMSwwLjQ3LDEuNDMsMCw2LjM2LDBTMTEuNzUsMC40NiwxMiwuNzFBMi40NCwyLjQ0LDAsMCwxLDEyLjcxLDIuNDRaIiBmaWxsPSIjMjMxZjIwIi8+PC9nPjxwYXRoIGQ9Ik02LjM2LDcuNzlhMS40MywxLjQzLDAsMCwxLTEtLjQyTDEuNDIsMy40NWExLjQ0LDEuNDQsMCwwLDEsMC0yYzAuNTYtLjU2LDkuMzEtMC41Niw5Ljg3LDBhMS40NCwxLjQ0LDAsMCwxLDAsMkw3LjM3LDcuMzdBMS40MywxLjQzLDAsMCwxLDYuMzYsNy43OVoiIGZpbGw9IiNmZmYiLz48L3N2Zz4=" transform="translate(112,10.5)"/></g><g transform="translate(188,18)"><text class="blocklyText" dominant-baseline="central" x="0" y="10">設為</text></g></g><g transform="translate(8,46.5)"><text class="blocklyText" dominant-baseline="central" x="0" y="10">在訊息視窗新增一行</text></g></g><g transform="translate(8,18)"><text class="blocklyText" dominant-baseline="central" x="0" y="10">變數</text></g><g class="blocklyEditableText" transform="translate(48,11.5)" style="cursor: default;"><rect rx="4" ry="4" x="0" y="0" height="33" width="132" class="blocklyFieldRect blocklyDropdownRect" stroke="#bf9197" fill="transparent"/><text class="blocklyText blocklyDropdownText" dominant-baseline="central" text-anchor="start" x="8" y="16.5">訓練預測輸出</text><image style="display: none;"/><image height="12px" width="12px" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMi43MSIgaGVpZ2h0PSI4Ljc5IiB2aWV3Qm94PSIwIDAgMTIuNzEgOC43OSI+PHRpdGxlPmRyb3Bkb3duLWFycm93PC90aXRsZT48ZyBvcGFjaXR5PSIwLjEiPjxwYXRoIGQ9Ik0xMi43MSwyLjQ0QTIuNDEsMi40MSwwLDAsMSwxMiw0LjE2TDguMDgsOC4wOGEyLjQ1LDIuNDUsMCwwLDEtMy40NSwwTDAuNzIsNC4xNkEyLjQyLDIuNDIsMCwwLDEsMCwyLjQ0LDIuNDgsMi40OCwwLDAsMSwuNzEuNzFDMSwwLjQ3LDEuNDMsMCw2LjM2LDBTMTEuNzUsMC40NiwxMiwuNzFBMi40NCwyLjQ0LDAsMCwxLDEyLjcxLDIuNDRaIiBmaWxsPSIjMjMxZjIwIi8+PC9nPjxwYXRoIGQ9Ik02LjM2LDcuNzlhMS40MywxLjQzLDAsMCwxLTEtLjQyTDEuNDIsMy40NWExLjQ0LDEuNDQsMCwwLDEsMC0yYzAuNTYtLjU2LDkuMzEtMC41Niw5Ljg3LDBhMS40NCwxLjQ0LDAsMCwxLDAsMkw3LjM3LDcuMzdBMS40MywxLjQzLDAsMCwxLDYuMzYsNy43OVoiIGZpbGw9IiNmZmYiLz48L3N2Zz4=" transform="translate(112,10.5)"/></g><g transform="translate(188,18)"><text class="blocklyText" dominant-baseline="central" x="0" y="10">設為</text></g></g><g transform="translate(33,14.5)"><text class="blocklyText" dominant-baseline="central" x="0" y="10">將</text></g><g transform="translate(181,14.5)"><text class="blocklyText" dominant-baseline="central" x="0" y="10">儲存至</text></g><g transform="translate(445,14.5)"><text class="blocklyText" dominant-baseline="central" x="0" y="10">.pickle</text></g><g class="blocklyIconGroup blockly-icon-comment" transform="translate(8, 16)"><circle class="blocklyIconShape" r="8" cx="8" cy="8"/><path class="blocklyIconSymbol" d="m6.8,10h2c0.003,-0.617 0.271,-0.962 0.633,-1.266 2.875,-2.4050.607,-5.534 -3.765,-3.874v1.7c3.12,-1.657 3.698,0.118 2.336,1.25-1.201,0.998 -1.201,1.528 -1.204,2.19z"/><rect class="blocklyIconSymbol" x="6.8" y="10.78" height="2" width="2"/></g></g><g transform="translate(33,14)"><text class="blocklyText" dominant-baseline="central" x="0" y="10">使用特徵資料：</text></g><g transform="translate(309,14)"><text class="blocklyText" dominant-baseline="central" x="0" y="10">對應標籤：</text></g><g transform="translate(553,14)"><text class="blocklyText" dominant-baseline="central" x="0" y="10">訓練</text></g><g class="blocklyIconGroup blockly-icon-comment" transform="translate(8, 15.5)"><circle class="blocklyIconShape" r="8" cx="8" cy="8"/><path class="blocklyIconSymbol" d="m6.8,10h2c0.003,-0.617 0.271,-0.962 0.633,-1.266 2.875,-2.4050.607,-5.534 -3.765,-3.874v1.7c3.12,-1.657 3.698,0.118 2.336,1.25-1.201,0.998 -1.201,1.528 -1.204,2.19z"/><rect class="blocklyIconSymbol" x="6.8" y="10.78" height="2" width="2"/></g></g><g transform="translate(33,14.5)"><text class="blocklyText" dominant-baseline="central" x="0" y="10">變數</text></g><g class="blocklyEditableText" transform="translate(73,8)" style="cursor: default;"><rect rx="4" ry="4" x="0" y="0" height="33" width="68" class="blocklyFieldRect blocklyDropdownRect" stroke="#bf9197" fill="transparent"/><text class="blocklyText blocklyDropdownText" dominant-baseline="central" text-anchor="start" x="8" y="16.5">模型</text><image style="display: none;"/><image height="12px" width="12px" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMi43MSIgaGVpZ2h0PSI4Ljc5IiB2aWV3Qm94PSIwIDAgMTIuNzEgOC43OSI+PHRpdGxlPmRyb3Bkb3duLWFycm93PC90aXRsZT48ZyBvcGFjaXR5PSIwLjEiPjxwYXRoIGQ9Ik0xMi43MSwyLjQ0QTIuNDEsMi40MSwwLDAsMSwxMiw0LjE2TDguMDgsOC4wOGEyLjQ1LDIuNDUsMCwwLDEtMy40NSwwTDAuNzIsNC4xNkEyLjQyLDIuNDIsMCwwLDEsMCwyLjQ0LDIuNDgsMi40OCwwLDAsMSwuNzEuNzFDMSwwLjQ3LDEuNDMsMCw2LjM2LDBTMTEuNzUsMC40NiwxMiwuNzFBMi40NCwyLjQ0LDAsMCwxLDEyLjcxLDIuNDRaIiBmaWxsPSIjMjMxZjIwIi8+PC9nPjxwYXRoIGQ9Ik02LjM2LDcuNzlhMS40MywxLjQzLDAsMCwxLTEtLjQyTDEuNDIsMy40NWExLjQ0LDEuNDQsMCwwLDEsMC0yYzAuNTYtLjU2LDkuMzEtMC41Niw5Ljg3LDBhMS40NCwxLjQ0LDAsMCwxLDAsMkw3LjM3LDcuMzdBMS40MywxLjQzLDAsMCwxLDYuMzYsNy43OVoiIGZpbGw9IiNmZmYiLz48L3N2Zz4=" transform="translate(48,10.5)"/></g><g transform="translate(149,14.5)"><text class="blocklyText" dominant-baseline="central" x="0" y="10">設為</text></g><g class="blocklyIconGroup blockly-icon-comment" transform="translate(8, 16)"><circle class="blocklyIconShape" r="8" cx="8" cy="8"/><path class="blocklyIconSymbol" d="m6.8,10h2c0.003,-0.617 0.271,-0.962 0.633,-1.266 2.875,-2.4050.607,-5.534 -3.765,-3.874v1.7c3.12,-1.657 3.698,0.118 2.336,1.25-1.201,0.998 -1.201,1.528 -1.204,2.19z"/><rect class="blocklyIconSymbol" x="6.8" y="10.78" height="2" width="2"/></g></g><g transform="translate(8,18)"><text class="blocklyText" dominant-baseline="central" x="0" y="10">將特徵資料：</text></g><g transform="translate(268,18)"><text class="blocklyText" dominant-baseline="central" x="0" y="10">對應標籤：</text></g><g transform="translate(512,18)"><text class="blocklyText" dominant-baseline="central" x="0" y="10">中</text></g><g transform="translate(590.239990234375,18)"><text class="blocklyText" dominant-baseline="central" x="0" y="10">的比例用作測試</text></g><g class="blocklyEditableText" transform="translate(8,59.5)" style="cursor: default;"><rect rx="4" ry="4" x="0" y="0" height="33" width="68" class="blocklyFieldRect blocklyDropdownRect" stroke="#baa0ba" fill="transparent"/><text class="blocklyText blocklyDropdownText" dominant-baseline="central" text-anchor="start" x="8" y="16.5">隨機</text><image style="display: none;"/><image height="12px" width="12px" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMi43MSIgaGVpZ2h0PSI4Ljc5IiB2aWV3Qm94PSIwIDAgMTIuNzEgOC43OSI+PHRpdGxlPmRyb3Bkb3duLWFycm93PC90aXRsZT48ZyBvcGFjaXR5PSIwLjEiPjxwYXRoIGQ9Ik0xMi43MSwyLjQ0QTIuNDEsMi40MSwwLDAsMSwxMiw0LjE2TDguMDgsOC4wOGEyLjQ1LDIuNDUsMCwwLDEtMy40NSwwTDAuNzIsNC4xNkEyLjQyLDIuNDIsMCwwLDEsMCwyLjQ0LDIuNDgsMi40OCwwLDAsMSwuNzEuNzFDMSwwLjQ3LDEuNDMsMCw2LjM2LDBTMTEuNzUsMC40NiwxMiwuNzFBMi40NCwyLjQ0LDAsMCwxLDEyLjcxLDIuNDRaIiBmaWxsPSIjMjMxZjIwIi8+PC9nPjxwYXRoIGQ9Ik02LjM2LDcuNzlhMS40MywxLjQzLDAsMCwxLTEtLjQyTDEuNDIsMy40NWExLjQ0LDEuNDQsMCwwLDEsMC0yYzAuNTYtLjU2LDkuMzEtMC41Niw5Ljg3LDBhMS40NCwxLjQ0LDAsMCwxLDAsMkw3LjM3LDcuMzdBMS40MywxLjQzLDAsMCwxLDYuMzYsNy43OVoiIGZpbGw9IiNmZmYiLz48L3N2Zz4=" transform="translate(48,10.5)"/></g><g transform="translate(84,66)"><text class="blocklyText" dominant-baseline="central" x="0" y="10">拆分為</text></g><g transform="translate(296,66)"><text class="blocklyText" dominant-baseline="central" x="0" y="10">、</text></g><g transform="translate(476,66)"><text class="blocklyText" dominant-baseline="central" x="0" y="10">、</text></g><g transform="translate(656,66)"><text class="blocklyText" dominant-baseline="central" x="0" y="10">、</text></g></g><g transform="translate(8,14.5)"><text class="blocklyText" dominant-baseline="central" x="0" y="10">變數</text></g><g class="blocklyEditableText" transform="translate(48,8)" style="cursor: default;"><rect rx="4" ry="4" x="0" y="0" height="33" width="100" class="blocklyFieldRect blocklyDropdownRect" stroke="#a3bca1" fill="transparent"/><text class="blocklyText blocklyDropdownText" dominant-baseline="central" text-anchor="start" x="8" y="16.5">檔案編號</text><image style="display: none;"/><image height="12px" width="12px" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMi43MSIgaGVpZ2h0PSI4Ljc5IiB2aWV3Qm94PSIwIDAgMTIuNzEgOC43OSI+PHRpdGxlPmRyb3Bkb3duLWFycm93PC90aXRsZT48ZyBvcGFjaXR5PSIwLjEiPjxwYXRoIGQ9Ik0xMi43MSwyLjQ0QTIuNDEsMi40MSwwLDAsMSwxMiw0LjE2TDguMDgsOC4wOGEyLjQ1LDIuNDUsMCwwLDEtMy40NSwwTDAuNzIsNC4xNkEyLjQyLDIuNDIsMCwwLDEsMCwyLjQ0LDIuNDgsMi40OCwwLDAsMSwuNzEuNzFDMSwwLjQ3LDEuNDMsMCw2LjM2LDBTMTEuNzUsMC40NiwxMiwuNzFBMi40NCwyLjQ0LDAsMCwxLDEyLjcxLDIuNDRaIiBmaWxsPSIjMjMxZjIwIi8+PC9nPjxwYXRoIGQ9Ik02LjM2LDcuNzlhMS40MywxLjQzLDAsMCwxLTEtLjQyTDEuNDIsMy40NWExLjQ0LDEuNDQsMCwwLDEsMC0yYzAuNTYtLjU2LDkuMzEtMC41Niw5Ljg3LDBhMS40NCwxLjQ0LDAsMCwxLDAsMkw3LjM3LDcuMzdBMS40MywxLjQzLDAsMCwxLDYuMzYsNy43OVoiIGZpbGw9IiNmZmYiLz48L3N2Zz4=" transform="translate(80,10.5)"/></g><g transform="translate(156,14.5)"><text class="blocklyText" dominant-baseline="central" x="0" y="10">從</text></g><g transform="translate(228,14.5)"><text class="blocklyText" dominant-baseline="central" x="0" y="10">到</text></g><g transform="translate(300,14.5)"><text class="blocklyText" dominant-baseline="central" x="0" y="10">每次增加</text></g><g transform="translate(8,51)"><text class="blocklyText" dominant-baseline="central" x="0" y="10">執行</text></g></g></g></g></g></svg>
